@@ -1,0 +1,20 @@
+/* Filename: src/App.css */
+
+.app-container {
+	width: 100%;
+	max-width: 720px;
+	margin: 4rem auto;
+	padding: 0 1rem;
+	text-align: center;
+}
+
+.app-title {
+	font-size: 2.4rem;
+	margin-bottom: 0.5rem;
+	font-weight: 600;
+}
+
+.app-subtitle {
+	font-size: 1.1rem;
+	color: #555;
+}

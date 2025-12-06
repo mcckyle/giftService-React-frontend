@@ -1,0 +1,13 @@
+/* Filename: GiftCard.css */
+
+.gift-card {
+	background: white;
+	padding: 1rem;
+	margin-bottom: 1rem;
+	border-radius: 12px;
+	border-left: 6px solid #222;
+}
+
+.gift-card.purchased {
+	border-left-color: #4caf50;
+}

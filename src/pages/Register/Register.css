@@ -1,0 +1,9 @@
+/* Filename: src/pages/Register/Register.css */
+@import "../Login/Login.css";
+
+.auth-success {
+	text-align: center;
+	color: #1b873f;
+	margin-bottom: 1rem;
+	font-size: 0.9rem;
+}

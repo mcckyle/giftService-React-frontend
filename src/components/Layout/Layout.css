@@ -1,0 +1,17 @@
+/* Filename: Layout.css */
+
+.layout-shell {
+	max-width: 800px;
+	margin: 0 auto;
+	padding: 2rem;
+}
+
+.layout-nav {
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 2rem;
+}
+
+.layout-content {
+	margin-top: 1rem;
+}

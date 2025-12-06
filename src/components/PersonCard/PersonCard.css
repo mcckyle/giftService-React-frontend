@@ -1,0 +1,11 @@
+/* Filename: PersonCard.css */
+
+.person-card {
+	background: white;
+	padding: 1rem;
+	margin-bottom: 1rem;
+	box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+	border-radius: 12px;
+	display: flex;
+	justify-content: space-between;
+}
