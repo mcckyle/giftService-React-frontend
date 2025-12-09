@@ -1,13 +1,6 @@
 //Filename: src/components/Layout/PageContainer.jsx
 
-import React from "react";
-//import "./PageContainer.css";
-
 //Reusable Wrapper for Consistent Page Spacing.
-const PageContainer = ({ children }) => (
-  <div className="page-container">
-    {children}
-  </div>
-);
-
-export default PageContainer;
+export default function PageContainer({ children }) {
+  return <main className="page-wrapper">{children}</main>;
+}

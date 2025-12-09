@@ -1,5 +1,17 @@
 /* Filename: src/pages/Dashboard/Dashboard.css */
 
+.dashboard-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 2rem;
+	flex-wrap: wrap;
+	gap: 1rem;
+}
+
 .people-list {
-	margin-top: 1rem;
+	display: grid;
+	gap: 1rem;
+	
+	grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
 }

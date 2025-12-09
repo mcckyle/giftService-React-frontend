@@ -1,18 +1,47 @@
-# React + Vite
+# Gift Planner
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A simple and modern app for organizing gift ideas for the important
+people in your life.
+Built with React and Vite, it focuses on clarity, speed, and a clean
+experience.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+-   Add, edit, and remove people.
+-   Organize gift ideas for each person.
+-   Import and export data for easy backup.
+-   Minimal, polished, and fast interface.
 
-## React Compiler
+## Tech Stack
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+-   **React** --- component-driven UI\
+-   **Vite** --- lightning‑fast development and builds\
+-   **React Router** --- navigation\
+-   **Context API** --- authentication state\
+-   **Modern CSS** --- clean and consistent styling
 
-Note: This will impact Vite dev & build performances.
+## Getting Started
 
-## Expanding the ESLint configuration
+``` bash
+npm install
+npm run dev
+```
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Build for Production
+
+``` bash
+npm run build
+```
+
+## Project Structure
+
+    src/
+      components/
+      pages/
+      services/
+      context/
+      styles/
+
+## License
+
+MIT License.

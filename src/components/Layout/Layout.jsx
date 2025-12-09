@@ -7,13 +7,13 @@ export default function Layout({ children }) {
 	return (
 	  <div className="layout-shell">
 	    <nav className="layout-nav">
-		  <Link to="/">Dashboard</Link>
-		  <Link to="/import">Import / Export</Link>
+		  <Link to="/dashboard" className="nav-link">Dashboard</Link>
+		  <Link to="/import" className="nav-link">Import / Export</Link>
 		</nav>
 		
-		<div className="layout-content">
+		<main className="layout-content">
 		  {children}
-		</div>
-	  </Shell>
+		</main>
+	  </div>
 	);
 }

@@ -3,15 +3,27 @@
 import { Link } from "react-router-dom";
 import "./PersonCard.css";
 
-export default function PersonCard({ person }) {
+export default function PersonCard({ person, onDelete }) {
 	return (
 	  <div className="person-card">
-	    <div>
-		  <h3>{person.name}</h3>
-		</div>
-		<Link to="{`/person/${person.id}`}>
-		  <button>View Gifts</button>
-		</Link>
+		<h3>{person.name}</h3>
+		
+		<div className="actions">
+		  <Link to={`/person/${person.id}`}>
+		    <button className="button small">View Gifts</button>
+		  </Link>
+		  
+		  <Link to={`/person/${person.id}/edit`}>
+		    <button className="button small secondary">Edit</button>
+		  </Link>
+		  
+		  <button
+		    className="button small danger"
+			onClick={() => onDelete(person.id)}
+		  >
+		    Delete
+		  </button>
+	    </div>
 	  </div>
 	);
 }

@@ -19,10 +19,10 @@ export function AuthProvider({ children })
 		}
 	}, [accessToken]);
 	
-	//For debugging purposes...
-	useEffect(() => {
-		console.log("AuthContext state changed: ", { accessToken, user });
-	}, [accessToken, user]);
+	//Uncomment for debugging purposes...
+	//useEffect(() => {
+	//	console.log("AuthContext state changed: ", { accessToken, user });
+	//}, [accessToken, user]);
 	
 	//Fetch the current user from /me endpoint.
 	const fetchUser = async (token) => {

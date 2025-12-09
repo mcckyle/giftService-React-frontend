@@ -1,0 +1,18 @@
+/* Filename: src/components/AddGift/AddGift.css */
+
+/* Form Wrapper Styles. */
+.add-gift-form {
+	display: flex;
+	gap: 0.5rem;
+	margin-bottom: 1rem;
+	width: 100%;
+	max-width: 420px;
+}
+
+.add-gift-form .input {
+	flex: 1;
+}
+
+.add-gift-form .button {
+	flex-shrink: 0;
+}

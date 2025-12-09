@@ -1,28 +1,51 @@
 //Filename: src/pages/Dashboard/Dashboard.jsx
 
-import { useEffect, useState } from "react";
-import { PersonAPI } from "../api/client";
+import { useEffect, useState, useContext } from "react";
 import Layout from "../../components/Layout/Layout.jsx";
 import PersonCard from "../../components/PersonCard/PersonCard.jsx";
+import AddPerson from "../../components/AddPerson/AddPerson.jsx";
+import { getPeople, deletePerson } from "../../services/PeopleService";
+import { AuthContext } from "../../context/AuthContext";
 
 import "./Dashboard.css";
 
 export default function Dashboard() {
+	const { accessToken } = useContext(AuthContext);
 	const [people, setPeople] = useState([]);
 	
 	useEffect(() => {
-		PersonAPI.getMyPeople().then(setPeople);
-	}, []);
+		async function load() {
+			const data = await getPeople(accessToken); //Error here, check frontend call to the endpoint...
+			setPeople(data);
+		}
+		load();
+	}, [accessToken]);
+	
+	function handleAdded(person) {
+		setPeople(prev => [...prev, person]);
+	}
+	
+	async function handleDeletePerson(id) {
+		await deletePerson(id, accessToken);
+		setPeople((prev) => prev.filter((p) => p.id !== id));
+	}
 	
 	return (
 	  <Layout>
-	    <h1>Your People</h1>
+	    <header className="dashboard-header">
+		  <h1>Your People</h1>
+		  <AddPerson onAdded={handleAdded} />
+		</header>
 		
-		<div className="people-list">
+		<section className="people-list">
 		  {people.map(p => (
-		    <PersonCard key={p.id} person={p} />
+		    <PersonCard
+			  key={p.id}
+			  person={p}
+			  onDelete={handleDeletePerson}
+			/>
 		  ))}
-		</div>
+		</section>
 	  </Layout>
 	);
 }

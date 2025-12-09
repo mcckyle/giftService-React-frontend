@@ -12,14 +12,9 @@ const Login = () => {
     const navigate = useNavigate();
     const { login } = useContext(AuthContext);
     const [errorMessage, setErrorMessage] = useState("");
-
-    const handleChange = (e) => {
-        setForm({ ...form, [e.target.name]: e.target.value });
-    };
-
-    const onSubmit = async (data) => {
-        e.preventDefault();
-        setErrorMessage("");
+	
+	const onSubmit = async (data) => {
+		setErrorMessage("");
         
         try
         {
@@ -28,7 +23,7 @@ const Login = () => {
         }
         catch (error)
         {
-            setError("Invalid email or password!");
+            setErrorMessage("Invalid email or password!");
         }
     };
 
@@ -37,27 +32,23 @@ const Login = () => {
 	    <form className="auth-card" onSubmit={handleSubmit}>
 		  <h1 className="auth-title">Sign in</h1>
 		  
-		  {error && <p className="auth-error">{error}</p>}
+		  {errorMessage && <p className="auth-error">{errorMessage}</p>}
 		  
 		  <input
 		    className="auth-input"
 			type="email"
-			name="email"
-			value={form.email}
-			onChange={handleChange}
 			placeholder="Email"
-			required
+			{...register("email", { required: true })}
 		  />
+		  {errors.email && <p className="input-error">Email is required!</p>}
 		  
 		  <input
 		    className="auth-input"
 			type="password"
-			name="password"
-			value={form.password}
-			onChange={handleChange}
 			placeholder="Password"
-			required
+			{...register("password", { required: true })}
 		  />
+		  {errors.password && <p className="input-error">Password is required!</p>}
 		  
 		  <button className="auth-button" type="submit">
 		    Continue

@@ -1,5 +1,11 @@
 /* Filename: GiftCard.css */
 
+.gift-card-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
 .gift-card {
 	background: white;
 	padding: 1rem;
@@ -10,4 +16,19 @@
 
 .gift-card.purchased {
 	border-left-color: #4caf50;
+}
+
+.gift-edit-btn {
+	background: transparent;
+	border: 1px solid #ddd;
+	padding: 0.25rem 0.5rem;
+	border-radius: 6px;
+	cursor: pointer;
+	font-size: 0.85rem;
+	
+	transition: background 0.2s ease;
+}
+
+.gift-edit-btn:hover {
+	background: #f2f2f2;
 }

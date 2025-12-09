@@ -1,0 +1,82 @@
+/* Filename: src/pages/HomePage/HomePage.css */
+
+.home {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xl);
+  padding: var(--space-xl) var(--space-md);
+  align-items: center;
+}
+
+/* Hero Section Styles. */
+.home-hero {
+	max-width: 700px;
+	text-align: center;
+}
+
+.home-title {
+	font-size: var(--font-title);
+	font-weight: 700;
+	margin-bottom: var(--space-xs);
+}
+
+.home-subtitle {
+	font-size: var(--font-subtitle);
+	opacity: 0.75;
+	margin-bottom: var(--space-lg);
+	line-height: 1.6;
+}
+
+.home-btn {
+	padding: 0.8rem 1.5rem;
+	border-radius: var(--radius);
+	background: var(--color-primary);
+	color: #fff;
+	font-weight: 600;
+	text-decoration: none;
+	
+	transition: 0.25s ease;
+}
+
+.home-btn:hover {
+	background: var(--color-primary-dark);
+	transform: translateY(-2px);
+}
+
+/* Info Cards Styles. */
+.home-content {
+	max-width: 1100px;
+	width: 100%;
+	display: grid;
+	gap: var(--space-md);
+}
+
+.home-card {
+	background: var(--color-surface);
+	padding: var(--space-lg);
+	border-radius: var(--radius);
+	border: 1px solid #e9ecef;
+	box-shadow: var(--shadow-sm);
+	
+	transition: 0.25s ease;
+}
+
+.home-card:hover {
+	transform: translateY(-4px);
+	box-shadow: var(--shadow-md);
+}
+
+.home-card h2 {
+	margin-bottom: var(--space-xs);
+	font-size: var(--font-card-title);
+}
+
+.home-card p {
+	opacity: 0.8;
+	line-height: 1.55;
+}
+
+@media (min-width: 780px)
+{
+	.home-content { grid-template-columns: repeat(3, 1fr); }
+}

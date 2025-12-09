@@ -1,0 +1,49 @@
+/* Filename: src/components/EditGift/EditGift.css */
+
+.edit-gift-overlay {
+	position: fixed;
+	inset: 0;
+	background: rgba(0, 0, 0, 0.35);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 1rem;
+}
+
+.edit-gift-modal {
+	background: white;
+	width: 100%;
+	max-width: 450px;
+	padding: 1.5rem;
+	border-radius: 12px;
+	box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+.edit-gift-modal h2 {
+	margin-bottom: 1rem;
+}
+
+label {
+	display: block;
+	font-size: 0.9rem;
+	margin-bottom: 0.5rem;
+}
+
+input,
+textarea {
+	width: 100%;
+	margin-top: 0.25rem;
+	margin-bottom: 1rem;
+}
+
+.purchased-check {
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+}
+
+.edit-gift-actions {
+	display: flex;
+	justify-content: space-between;
+	margin-top: 1.5rem;
+}

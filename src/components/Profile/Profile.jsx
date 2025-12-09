@@ -1,42 +1,43 @@
 //Filename: src/components/Profile.jsx
 
-import React, { useContext, useState } from "react";
+import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 import "./Profile.css"; // Import the CSS file.
 
 const Profile = () => {
 	const navigate = useNavigate();
-	const { user, accessToken, logout, setUser } = useContext(AuthContext);
-	const [loading, setLoading] = useState(!user);
-	const [error, setError] = useState("");
+	const { user, logout, accessToken, setUser } = useContext(AuthContext);
+	
 	const [openEdit, setOpenEdit] = useState(false);
-	const [editData, setEditData] = useState({ username: "", email: "", bio: "" });
 	const [saving, setSaving] = useState(false);
+	const [error, setError] = useState("");
 	
-	const handleLogout = async () => {
-		await logout();
-		navigate("/signin", { replace: true });
-	};
+	const [editData, setEditData] = useState({
+		username: "",
+		email: "",
+		bio: ""
+	});
 	
-	//Open edit modal.
-	const handleOpenEdit = () => {
+	function openEditor() {
 		setEditData({
-		username: user.username || "",
-		email: user.email || "",
-		bio: user.bio || "",
-	  });
-	  setOpenEdit(true);
-	};
+			username: user.username || "",
+			email: user.email || "",
+			bio: user.bio || "",
+		});
+		setOpenEdit(true);
+	}
 	
-	const handleCloseEdit = () => setOpenEdit(false);
+	function closeEditor() {
+		setOpenEdit(false);
+	}
 	
-	const handleEditChange = (e) => {
+	function handleChange(e) {
 		setEditData({ ...editData, [e.target.name]: e.target.value });
 	};
 	
 	//Save profile changes.
-	const handleSaveChanges = async () => {
+	async function handleSave() {
 		try
 		{
 			setSaving(true);
@@ -70,6 +71,11 @@ const Profile = () => {
 		}
 	};
 	
+	async function handleLogout() {
+		await logout();
+		navigate("/signin", { replace: true });
+	}
+	
 	//Early return if user is null.
 	if ( ! user)
 	{
@@ -79,56 +85,69 @@ const Profile = () => {
 	}
 	
 	return (
-	  <div className="profile-container">
+	  <section className="page-card profile-card">
 	    <h1 className="profile-title">Welcome, {user.username}!</h1>
 		
-		<div className="profile-card">
+		<div className="profile-info">
 		  <p><strong>Email:</strong> {user.email}</p>
 		  <p><strong>Bio:</strong> {user.bio || "No bio yet."}</p>
-		  <div className="profile-actions">
-		    <button className="btn btn-edit" onClick={handleOpenEdit}>Edit Profile</button>
-			<button className="btn btn-logout" onClick={handleLogout}>Logout</button>
-		  </div>
-		  {error && <p className="profile-error">{error}</p>}
 		</div>
 		
-		{openEdit && (
-		  <div className="edit-modal">
-		    <div className="edit-card">
+		<div className="profile-actions">
+		    <button className="button" onClick={openEditor}>Edit Profile</button>
+			<button className="button danger" onClick={handleLogout}>Logout</button>
+		  </div>
+		  
+		  {error && <p className="profile-error">{error}</p>}
+		  
+		  {/* Modal */}
+		  {openEdit && (
+		   <div className="modal-overlay">
+		    <div className="modal-card">
 			  <h2>Edit Profile</h2>
+			  
 			  <input
+			    className="input"
 			    name="username"
 				value={editData.username}
-				onChange={handleEditChange}
+				onChange={handleChange}
 				placeholder="Username"
 			  />
+			  
 			  <input
+			    className="input"
+				type="email"
 			    name="email"
 				value={editData.email}
-				onChange={handleEditChange}
+				onChange={handleChange}
 				placeholder="Email"
-				type="email"
 			  />
+			  
 			  <textarea
+			    className="input textarea"
 			    name="bio"
 				value={editData.bio}
-				onChange={handleEditChange}
+				onChange={handleChange}
 				placeholder="Bio"
 			  />
-			  <div className="edit-actions">
+			  
+			  <div className="modal-actions">
 			    <button
-				  className="btn btn-save"
-				  onClick={handleSaveChanges}
+				  className="button"
+				  onClick={handleSave}
 				  disabled={saving}
 				>
 				  {saving ? "Saving..." : "Save"}
 				</button>
-				<button className="btn btn-cancel" onClick={handleCloseEdit}>Cancel</button>
+				
+				<button className="button secondary" onClick={closeEditor}>
+				  Cancel
+				</button>
 			  </div>
 			</div>
 		  </div>
 		)}
-	  </div>		  
+	  </section>		  
     );
 };
 
