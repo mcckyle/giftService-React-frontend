@@ -15,8 +15,8 @@ export default function Dashboard() {
 	
 	useEffect(() => {
 		async function load() {
-			const data = await getPeople(accessToken); //Error here, check frontend call to the endpoint...
-			setPeople(data);
+			const data = await getPeople(accessToken);
+			setPeople(data || []);
 		}
 		load();
 	}, [accessToken]);
@@ -33,7 +33,7 @@ export default function Dashboard() {
 	return (
 	  <Layout>
 	    <header className="dashboard-header">
-		  <h1>Your People</h1>
+		  <h1 className="dashboard-title">Your People</h1>
 		  <AddPerson onAdded={handleAdded} />
 		</header>
 		

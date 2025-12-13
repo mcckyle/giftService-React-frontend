@@ -52,7 +52,7 @@ const Settings = () => {
 	//Apply Font Size.
 	useEffect(() => {
 		const root = document.documentElement;
-		root.dataset.fontsize = fontSize;
+		root.dataset.fontSize = fontSize;
 		localStorage.setItem("fontSize", fontSize);
 	}, [fontSize]);
 	
@@ -109,15 +109,15 @@ const Settings = () => {
 	  <div className="settings-page">
 	    <h1 className="settings-title">Settings</h1>
 		
-		{/* Preferences Section */}
+		{/* Preferences Section. */}
 		<section className="settings-section">
 		  <h2 className="settings-section-title">Preferences</h2>
 		  
-		  {/* Theme */}
+		  {/* Theme. */}
 		  <div className="settings-card">
 		    <div className="settings-card-header">
 			  <h3 className="settings-card-title">Theme</h3>
-			  <p className="settings-card-subtitle">Choose how the journal appears</p>
+			  <p className="settings-card-subtitle">Choose how the planner appears</p>
 			</div>
 			
 			<div className="settings-options">
@@ -156,7 +156,7 @@ const Settings = () => {
 			</div>
 		  </div>
 		  
-		  {/* Font Size */}
+		  {/* Font Size. */}
 		  	<div className="settings-card">
 		      <div className="settings-card-header">
 			    <h3 className="settings-card-title">Font Size</h3>
@@ -200,7 +200,7 @@ const Settings = () => {
 		  </div>
 		</section>
 		
-		{/* Account Section */}
+		{/* Account Section. */}
 		<section className="settings-section">
 		  <h2 className="settings-section-title">Account</h2>
 		  

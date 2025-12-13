@@ -1,46 +1,54 @@
 //Filename: src/pages/HomePage/HomePage.jsx
 
-import React from "react";
 import { Link } from "react-router-dom";
 import "./HomePage.css";
 
 const HomePage = () => {
 	return (
 	  <div className="home">
+	    {/* Hero Section. */}
 	    <section className="home-hero">
-		  <h1 className="home-title">Plan Gifts with Ease</h1>
-		  <p className="home-subtitle">
-		    Organize your ideas, track your recipients, and make gifting meaningful and stress-free.
-		  </p>
+		  <span className="home-eyebrow">Thoughtful Gifting</span>
 		  
-		  <div className="home-actions">
-		    <Link to="/dashboard" className="home-btn">Dashboard</Link>
-		  </div>
+		    <h1 className="home-title">
+			  Plan Gifts with Ease
+			</h1>
+			
+			<p className="home-subtitle">
+		      Organize ideas, track recipients, and create meaningful gifts
+			  without the stress.
+		    </p>
+			
+			<div className="home-actions">
+		      <Link to="/dashboard" className="home-btn">
+			    Open Dashboard
+			  </Link>
+		    </div>
 		</section>
 		
-		<section className="home-content">
-		  <div className="home-card">
-		    <h2>Stay Organized</h2>
-			<p>
-			  Track occasions, gift ideas, and progress all year long.
+		{/* Feature Cards. */}
+		<section className="home-grid">
+		  <article className="home-card">
+		    <h2 className="card-title">Stay Organized</h2>
+			<p className="card-text">
+			  Track occasions, gift ideas, and progress neatly in one place.
 			</p>
-		  </div>
+		  </article>
 		  
-		  <div className="home-card">
-		    <h2>Save Ideas Effortlessly</h2>
-			<p>
-			  Capture inspiration instantly so nothing meaningful slips away.
+		  <article className="home-card">
+		    <h2 className="card-title">Capture Ideas Instantly</h2>
+			<p className="card-text">
+			  Save inspiration the moment it strikes so nothing meaningful is lost.
 			</p>
-		  </div>
+		  </article>
 		  
-		  <div className="home-card">
-		    <h2>Make Every Gift Count</h2>
-			<p>
-			  Build thoughtful gift histories to give with intention.
+		  <article className="home-card">
+		    <h2 className="card-title">Give with Intention</h2>
+			<p className="card-text">
+			  Build thoughtful gift histories that help every gift feel personal.
 			</p>
-		  </div>
+		  </article>
 		</section>
-		
 	  </div>
 	);
 };

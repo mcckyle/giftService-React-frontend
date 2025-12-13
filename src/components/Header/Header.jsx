@@ -34,65 +34,46 @@ const Header = () => {
   
   return (
 	  <header className="header">
-		<div className="header-container">
+		<div className="header-inner">
 		
 		  {/* Left Logo. */}
-		  <Link className="logo-text" to="/">
+		  <Link to="/" className="logo">
 		    Gift Planner
 		  </Link>
 		
 		{/* Desktop Navigation. */}
-		<nav className="nav-links">
-		  <Link to="/" className="nav-link">Home</Link>
-		  <Link to="/profile" className="nav-link">Profile</Link>
+		<nav className="nav">
+		  <Link to="/" className="nav-item">Home</Link>
+		  <Link to="/dashboard" className="nav-item">Dashboard</Link>
+		  <Link to="/profile" className="nav-item">Profile</Link>
 		</nav>
 		
 		{/* Right Side: Auth / User Avatar. */}
-		<div className="auth-section">
+		<div className="right">
 		  {user ? (
 		    <div
-			  className="avatar-wrapper"
+			  className="avatar-area"
 			  ref={avatarRef}
 		      onClick={() => setMenuOpen((o) => ! o)}
 			>
-			  <div className="avatar-circle">
+			  <div className="avatar">
 			    {user.username?.charAt(0)?.toUpperCase() ?? "?"}
 			  </div>
 			  
-			  <div className={`avatar-menu ${menuOpen ? "open" : ""}`}>
-			    <Link
-				  to="/profile"
-				  className="avatar-menu-item"
-				  onClick={() => setMenuOpen(false)}
-				>
-				  Profile
-				</Link>
-				
-				<div className="avatar-menu-divider" />
-				
-				<Link
-				  to="/settings"
-				  className="avatar-menu-item"
-				  onClick={() => setMenuOpen(false)}
-				>
-				  Settings
-				</Link>
-				
-				<button
-				  className="avatar-menu-item logout"
-				  onClick={handleLogout}
-				>
+			  <div className={`menu ${menuOpen ? "open" : ""}`}>
+			    <Link to="/profile" className="menu-item">Profile</Link>
+				<Link to="/settings" className="menu-item">Settings</Link>
+				<div className="menu-divider" />
+				<button className="menu-item logout" onClick={handleLogout}>
 				  Logout
 				</button>
 			  </div>
 			</div>
 		) : (
-		  <>
-		    <Link to="/login" className="btn auth-btn">Login</Link>
-		    <Link to="/register" className="btn auth-btn register-btn">
-			  Register
-			</Link>
-		  </>
+		  <div className="auth-actions">
+		    <Link to="/login" className="auth-link">Login</Link>
+		    <Link to="/register" className="auth-link primary">Register</Link>
+		  </div>
 		)}
 		</div>
 	  </div>

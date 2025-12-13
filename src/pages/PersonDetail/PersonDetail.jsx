@@ -7,6 +7,8 @@ import AddGift from "../../components/AddGift/AddGift.jsx";
 import { getGifts } from "../../services/GiftService";
 import { AuthContext } from "../../context/AuthContext";
 
+import "./PersonDetail.css";
+
 export default function PersonDetail() {
 	const { id } = useParams();
 	const { accessToken } = useContext(AuthContext);
@@ -21,30 +23,31 @@ export default function PersonDetail() {
 	}, [id, accessToken]);
 	
 	function handleAdded(gift) {
-		setGifts(prev => [...prev, gift]);
+		setGifts((prev) => [...prev, gift]);
 	}
 	
 	function handleGiftUpdated(updatedGift) {
 		setGifts(prev =>
-		  prev.map(g => (g.id === updatedGift.id ? updatedGift : g))
+		  prev.map((g) => (g.id === updatedGift.id ? updatedGift : g))
 		);
 	}
 	
 	return (
 	  <Layout>
-	    <h1>Gift Ideas</h1>
+	    <header className="person-detail-header">
+		  <h1>Gift Ideas</h1>
+		  <AddGift personId={id} onAdded={handleAdded} />
+		</header>
 		
-		<AddGift personId={id} onAdded={handleAdded} />
-		
-		<div style={{ marginTop: "1rem" }}>
-		  {gifts.map(g => (
+		<section className="gifts-grid">
+		  {gifts.map((g) => (
 		    <GiftCard
 			  key={g.id}
 			  gift={g}
 			  onUpdated={handleGiftUpdated}
 			/>
 		  ))}
-		</div>
+		</section>
 	  </Layout>
 	);
 }

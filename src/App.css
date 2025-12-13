@@ -1,30 +1,16 @@
 /* Filename: src/App.css */
 
-/* Core Layout Wrapper Styles. */
+/* Page Wrapper ensures consistent horizontal alignment. */
 .page-wrapper {
 	width: 100%;
 	max-width: 900px;
-	margin: var(--space-lg) auto;
+	margin: var(--space-xl) auto;
 	padding: 0 var(--space-md);
 }
 
-.app-container {
-	text-align: center;
-}
-
-.app-title {
-	font-size: var(--font-title);
-	font-weight: 600;
-	margin-bottom: 0.5rem;
-}
-
-.app-subtitle {
-	font-size: var(--font-subtitle);
-	opacity: 0.75;
-}
-
+/* Simple Fallback Page (404, etc.) Styles. */
 .not-found {
-	margin-top: var(--space-lg);
+	margin-top: var(--space-xl);
 	text-align: center;
 	opacity: 0.6;
 }

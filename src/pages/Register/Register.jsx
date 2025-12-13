@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { registerUser } from "../../services/AuthService";
 import { AuthContext } from "../../context/AuthContext";
-import "./Register.css";
+import "../Auth/Auth.css";
 
 const Register = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
@@ -30,17 +30,12 @@ const Register = () => {
         {
 			const response = await registerUser(data);
 			setSuccessMessage("Account created successfully!");
-			
 			const { accessToken } = response;
 			
 			setAccessToken(accessToken);
+			setUser({ username: response.username, email: response.email });
 			
-			setUser({
-				username: response.username,
-				email: response.email
-			});
-			
-			navigate("/profile");
+			navigate("/dashboard");
         }
         catch (error)
         {

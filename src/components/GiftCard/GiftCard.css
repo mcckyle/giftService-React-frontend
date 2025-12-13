@@ -1,34 +1,72 @@
-/* Filename: GiftCard.css */
+/* Filename: src/components/GiftCard/GiftCard.css */
+
+.gift-card {
+	background: #fff;
+	padding: 1rem 1.25rem;
+	border-radius: 12px;
+	border: 1px solid rgba(0, 0, 0, 0.08);
+	cursor: pointer;
+	margin-bottom: 1rem;
+	
+	transition: box-shadow 0.2s ease;
+}
+
+.gift-card:hover {
+	box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+}
+
+.gift-card.is-purchased {
+	border-left: 5px solid #4caf50;
+}
 
 .gift-card-header {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
+	margin-bottom: 0.5rem;
 }
 
-.gift-card {
-	background: white;
-	padding: 1rem;
-	margin-bottom: 1rem;
-	border-radius: 12px;
-	border-left: 6px solid #222;
+.gift-title {
+	font-size: 1.1rem;
+	font-weight: 600;
+	opacity: 0.9;
 }
 
-.gift-card.purchased {
-	border-left-color: #4caf50;
+:root[data-theme="dark"] .gift-title {
+	color: #000000;
 }
 
 .gift-edit-btn {
+	border: 1px solid rgba(0, 0, 0, 0.15);
 	background: transparent;
-	border: 1px solid #ddd;
-	padding: 0.25rem 0.5rem;
+	padding: 0.35rem 0.6rem;
 	border-radius: 6px;
-	cursor: pointer;
 	font-size: 0.85rem;
+	cursor: pointer;
 	
-	transition: background 0.2s ease;
+	transition: background 0.2s ease, border-color 0.2s ease;
 }
 
 .gift-edit-btn:hover {
-	background: #f2f2f2;
+	background: #f6f6f6;
+	border-color: rgba(0, 0, 0, 0.25);
+}
+
+.gift-price {
+	font-size: 0.95rem;
+	font-weight: 500;
+	opacity: 0.8;
+	margin: 0.25rem 0;
+}
+
+.gift-url {
+	display: inline-block;
+	margin-top: 0.35rem;
+	font-size: 0.9rem;
+	color: #0077cc;
+	text-decoration: none;
+}
+
+.gift-url:hover {
+	text-decoration: underline;
 }

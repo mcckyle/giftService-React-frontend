@@ -12,10 +12,9 @@
 /* Title Styles. */
 .settings-title {
 	text-align: center;
-	font-size: 2.2rem;
+	font-size: 2rem;
 	font-weight: 700;
 	margin-bottom: 40px;
-	color: var(--color-text);
 }
 
 /* Section Styles. */
@@ -24,20 +23,30 @@
 }
 
 .settings-section-title {
-	font-size: 1.32rem;
+	font-size: 1.25rem;
 	font-weight: 600;
 	margin-bottom: 18px;
-	color: var(--color-text);
 }
 
 /* Settings Cards Styles. */
 .settings-card {
-	background: rgba(255, 255, 255, 0.75);
-	backdrop-filter: blur(14px);
+	background: var(--color-surface);
 	padding: 28px;
 	border-radius: 20px;
-	box-shadow: 0 6px 22px rgba(0, 0, 0, 0.08);
+	border: 1px solid rgba(0, 0, 0, 0.06);
+	box-shadow: var(--shadow-sm);
 	margin-bottom: 20px;
+	
+	transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+:root[data-theme="dark"] .settings-card {
+	border-color: rgba(255, 255, 255, 0.08);
+}
+
+.settings-card:hover {
+	transform: translateY(-3px);
+	box-shadow: var(--shadow-md);
 }
 
 /* Card Header Styles. */
@@ -46,7 +55,7 @@
 }
 
 .settings-card-title {
-	font-size: 1.15rem;
+	font-size: 1.1rem;
 	font-weight: 600;
 }
 
@@ -65,10 +74,8 @@
 .settings-option {
 	display: flex;
 	align-items: center;
-	gap: 10px;
-	font-size: 1rem;
+	gap: 12px;
 	cursor: pointer;
-	padding: 3px 0;
 }
 
 /* Account Buttons Styles. */
@@ -81,20 +88,20 @@
 
 .settings-action-btn {
 	padding: 12px 18px;
-	border-radius: 16px;
+	border-radius: var(--radius);
 	border: none;
 	font-size: 1rem;
 	font-weight: 600;
-	color: white;
 	background: var(--color-primary);
+	color: #fff;
 	cursor: pointer;
 	
-	transition: transform 0.15s ease, opacity 0.2s ease;
+	transition: var(--transition-fast);
 }
 
 .settings-action-btn:hover {
+	transform: translateY(-2px);
 	opacity: 0.9;
-	transform: translateY(-1px);
 }
 
 /* Danger Button Styles. */
@@ -107,9 +114,14 @@
 	width: 100%;
 	margin-top: 8px;
 	padding: 10px 12px;
-	border-radius: 14px;
-	border: 1px solid #ccc;
-	font-size: 1rem;
+	border-radius: var(--radius);
+	border: 1px solid rgba(0, 0, 0, 0.25);
+	background: var(--color-surface);
+	color: var(--color-text);
+}
+
+:root[data-theme="dark"] .modal-input {
+	border-color: rgba(255, 255, 255, 0.25);
 }
 
 /* Fade-in Animation Styles. */
@@ -123,5 +135,5 @@
 @media (max-width: 600px)
 {
 	.settings-page { padding: 32px 18px; }
-	.settings-title { font-size: 1.9rem; }
+	.settings-title { font-size: 1.8rem; }
 }

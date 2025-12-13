@@ -1,0 +1,53 @@
+/* Filename: src/styles/theme.css */
+
+:root {
+  --color-bg: #f5f7f8;
+  --color-surface: #ffffff;
+  --color-text: #1b1b1b;
+  --color-primary: #4b7bec;
+  --color-primary-dark: #3867d6;
+  
+  --radius: 18px;
+  --space-xs: 0.4rem;
+  --space-sm: 0.75rem;
+  --space-md: 1.25rem;
+  --space-lg: 2rem;
+  --space-xl: 2.5rem;
+  --space-xxl: 3rem;
+  
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.12);
+  
+  --font-base: 1rem; /* Medium Default. */
+  --font-small: 0.9rem;
+  --font-large: 1.1rem;  
+  
+  --transition-fast: 0.22s ease;
+}
+
+:root[data-theme="dark"] {
+  --color-bg: #0f0f10;
+  --color-surface: #18181a;
+  --color-text: #f4f4f5;
+  --color-primary: #6c8eff;
+  --color-primary-dark: #4c6cf0;
+  
+  --shadow-sm: 0 1px 3px rgba(255, 255, 255, 0.05);
+  --shadow-md: 0 4px 12px rgba(255, 255, 255, 0.08);
+}
+
+:root[data-theme="light"] {
+  --color-bg: #f7f7f8;
+  --color-surface: #ffffff;
+  --color-text: #1b1b1b;
+}
+
+:root[data-font-size="small"] { --font-base: var(--font-small); }
+:root[data-font-size="medium"] { --font-base: 1rem; }
+:root[data-font-size="large"] { --font-base: var(--font-large); }
+
+html, body {
+	font-size: var(--font-base);
+	
+	transition: background var(--transition-fast), color var(--transition-fast);
+}

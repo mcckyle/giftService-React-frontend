@@ -2,10 +2,9 @@
 
 import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
-import { useNavigate, Link } from "react-router-dom";
-import { loginUser } from "../../services/AuthService";
+import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
-import "./Login.css";
+import "../Auth/Auth.css";
 
 const Login = () => {
 	const { register, handleSubmit, formState: { errors } } = useForm();
@@ -15,11 +14,17 @@ const Login = () => {
 	
 	const onSubmit = async (data) => {
 		setErrorMessage("");
+		
+		if ( ( ! data.email) || ( ! data.password))
+		{
+			setErrorMessage("Both fields are required!");
+			return;
+		}
         
         try
         {
 			await login(data);
-            navigate("/profile");
+            navigate("/dashboard");
         }
         catch (error)
         {
@@ -29,7 +34,7 @@ const Login = () => {
 
     return (
       <div className="auth-container">
-	    <form className="auth-card" onSubmit={handleSubmit}>
+	    <form className="auth-card" onSubmit={handleSubmit(onSubmit)}>
 		  <h1 className="auth-title">Sign in</h1>
 		  
 		  {errorMessage && <p className="auth-error">{errorMessage}</p>}

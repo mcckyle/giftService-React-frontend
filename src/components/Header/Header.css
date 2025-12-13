@@ -5,184 +5,163 @@
   position: sticky;
   top: 0;
   z-index: 1000;
-  background: rgba(255, 255, 255, 0.8);
   backdrop-filter: blur(14px);
-  padding: var(--space-sm) var(--space-lg);
-  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.05);
+  background: color-mix(in srgb, var(--color-surface) 82%, transparent);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.04);
 }
 
-.header-container {
+.header-inner {
 	max-width: 1250px;
 	margin: 0 auto;
+	padding: var(--space-sm) var(--space-lg);
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
 }
 
 /* Logo Text Styles. */
-.logo-text {
+.logo {
 	font-size: 1.4rem;
 	font-weight: 700;
 	color: var(--color-text);
-	
-	transition: color 0.25s ease;
+	letter-spacing: -0.02em;
 }
 
-.logo-text:hover {
+.logo:hover {
 	color: var(--color-primary);
 }
 
 /* Navigation Styles. */
-.nav-links {
+.nav {
   display: flex;
-  gap: var(--space-md);
+  gap: var(--space-lg);
 }
 
-.nav-link {
+.nav-item {
   font-weight: 500;
   color: var(--color-text);
+  opacity: 0.85;
   position: relative;
-  padding: 4px 0;
-  
-  transition: color 0.25s ease;
 }
 
-.nav-link:hover {
-  color: var(--color-primary);
+.nav-item:hover {
+  opacity: 1;
 }
 
-.nav-link::after {
+.nav-item::after {
 	content: "";
 	position: absolute;
-	bottom: -2px;
-	width: 0;
+	bottom: -6px;
 	left: 0;
+	width: 0;
 	height: 2px;
 	background: var(--color-primary);
 	
-	transition: width 0.25s ease;
+	transition: width var(--transition-fast);
 }
 
-.nav-link:hover::after {
+.nav-item:hover::after {
 	width: 100%;
 }
 
-/* Auth and Avatar Styles. */
-.auth-section {
+/* Right Side Styles. */
+.right {
 	display: flex;
 	align-items: center;
-	gap: var(--space-xs);
 }
 
-/* Buttons Styles. */
-.btn {
-  padding: 0.5rem 1.2rem;
-  border-radius: var(--radius);
-  font-weight: 600;
-  box-shadow: var(--shadow-sm);
-  
-  transition: 0.2s ease;
+/* Auth Links Styles. */
+.auth-actions {
+	display: flex;
+	gap: var(--space-sm);
 }
 
-.auth-btn {
+.auth-link {
+	padding: 0.45rem 0.9rem;
+	border-radius: var(--radius);
+	font-weight: 500;
+}
+
+.auth-link.primary {
 	background: var(--color-primary);
-	color: white;
+	color: #fff;
 }
 
-.auth-btn:hover {
-  background: var(--color-primary-dark);
-  transform: translateY(-1px);
-}
-
-/* Special styling for the Register button. */
-.register-btn {
-  background: var(--color-accent);
-}
-
-.register-btn:hover {
-  background: #1b8735;
+.auth-link.primary:hover {
+	background: var(--color-primary-dark);
 }
 
 /* Avatar Styles. */
-.avatar-wrapper {
+.avatar-area {
 	position: relative;
 	cursor: pointer;
 }
 
-.avatar-circle {
-	width: 42px;
-	height: 42px;
+.avatar {
+	width: 40px;
+	height: 40px;
 	border-radius: 50%;
 	background: var(--color-primary);
-	color: white;
+	color: #fff;
+	display: grid;
+	place-items: center;
 	font-weight: 700;
-	font-size: 1.1rem;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	
-	transition: 0.2s ease;
 }
 
-.avatar-circle:hover {
-	transform: scale(1.07);
+.avatar:hover {
 	box-shadow: var(--shadow-md);
 }
 
 /* Avatar Dropdown Menu Styles. */
-.avatar-menu {
+.menu {
 	position: absolute;
+	top: 52px;
 	right: 0;
-	top: 54px;
-	width: 180px;
-	padding: 8px 0;
+	min-width: 180px;
 	background: var(--color-surface);
-	border-radius: 14px;
-	box-shadow: 0 12px 28px rgba(0, 0, 0, 0.14);
+	border-radius: var(--radius);
+	box-shadow: var(--shadow-md);
+	padding: 6px;
 	opacity: 0;
-	pointer-events: none;
 	transform: translateY(-6px);
+	pointer-events: none;
 	
-	transition: 0.25s ease;
+	transition: var(--transition-fast);
 }
 
-.avatar-menu.open {
+.menu.open {
 	opacity: 1;
-	pointer-events: auto;
 	transform: translateY(0);
+	pointer-events: auto;
 }
 
-.avatar-menu-item {
-	padding: 12px 16px;
-	margin: 2px 6px;
-	border-radius: 8px;
-	color: var(--color-text);
+.menu-item {
 	display: block;
-	
-	transition: background 0.2s ease;
+	width: 100%;
+	padding: 10px 12px;
+	border-radius: 10px;
+	text-align: left;
+	font-size: 0.95rem;
+	background: none;
 }
 
-.avatar-menu-item:hover {
-	background: rgba(0, 0, 0, 0.05);
+.menu-item:hover {
+	background: rgba(0, 0, 0, 0.06);
 }
 
 .logout {
-	color: #d63c3c;
-}
-
-.logout:hover {
-	background: rgba(214, 60, 60, 0.12);
+	color: #e04545;
 }
 
 /* Divider Inside the Avatar Dropdown Styles. */
-.avatar-menu-divider {
+.menu-divider {
 	height: 1px;
 	margin: 6px 0;
-	background: rgba(0, 0, 0, 0.07);
+	background: rgba(0, 0, 0, 0.08);
 }
 
 /* Media Query Styles. */
 @media (max-width: 768px)
 {
-	.logo-text { font-size: 1.2rem; }
+	.nav { display: none; }
 }

@@ -1,4 +1,4 @@
-//Filename: src/context/AuthContext.js
+//Filename: src/context/AuthContext.jsx
 
 import { createContext, useState, useEffect } from "react";
 import { loginUser } from "../services/AuthService";
@@ -18,11 +18,6 @@ export function AuthProvider({ children })
 			setUser(null);
 		}
 	}, [accessToken]);
-	
-	//Uncomment for debugging purposes...
-	//useEffect(() => {
-	//	console.log("AuthContext state changed: ", { accessToken, user });
-	//}, [accessToken, user]);
 	
 	//Fetch the current user from /me endpoint.
 	const fetchUser = async (token) => {

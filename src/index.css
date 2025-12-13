@@ -1,41 +1,14 @@
+/* Filename: src/index.css */
+
 :root {
   font-family: Inter, system-ui, sans-serif;
-  font-size: 16px;
-  line-height: 1.5;
-  
-  color: var(--color-text);
-  background: var(--color-bg);
-  
-  --color-bg: #f8f9fa;
-  --color-text: #1b1b1b;
-  --color-primary: #2a7fff;
-  --color-primary-dark: #1e63d6;
-  --color-accent: #22c55e; /* Register Button Highlight. */
-  --color-surface: #ffffff;
-  
-  --radius: 12px;
-  --space-xs: 0.4rem;
-  --space-sm: 0.75rem;
-  --space-md: 1.25rem;
-  --space-lg: 2rem;
-  --space-xl: 2.5rem;
-  
-  --shadow-sm: 0 2px 6px rgba(0, 0, 0, 0.05);
-  --shadow-md: 0 4px 14px rgba(0, 0, 0, 0.08);
-  --shadow-lg: 0 6px 28px rgba(0, 0, 0, 0.12);
-  
-  --font-title: 2.4rem;
-  --font-subtitle: 1.15rem;
-  --font-body: 1rem;
-  --font-card-title: 1.25rem;
-  
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 body {
 	margin: 0;
-	display: flex;
 	min-height: 100vh;
+	display: flex;
 	flex-direction: column;
 }

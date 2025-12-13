@@ -1,4 +1,4 @@
-//Filename: App.jsx
+//Filename: src/App.jsx
 
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Register from "./pages/Register/Register.jsx";
@@ -27,7 +27,7 @@ export default function App() {
 		  <Route path="/register" element={<Register />} />
 
 		  <Route path="/settings" element={<Settings />} />
-		  <Route path="/dashboard" element={<Dashboard />} />
+		  <Route path="/dashboard" element={<PrivateRoute element={<Dashboard />} />} />
 		  <Route path="/person/:id" element={<PersonDetail />} />
 		  <Route path="/person/:id/edit" element={<EditPerson />} />
 

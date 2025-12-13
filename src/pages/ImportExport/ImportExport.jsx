@@ -72,19 +72,22 @@ export default function ImportExport() {
 	
 	return (
 	  <section className="page-card import-export">
-	    <h2>Import / Export </h2>
+	    <h2 className="ie-title">Import / Export </h2>
 		
-		<div className="export-block">
-		  <p>Download all your people and gift data.</p>
+		<div className="ie-card">
+		  <h3>Export</h3>
+		  <p>Your complete people + gift data in one file.</p>
+		  
 		  <button className="button" onClick={handleExport}>
 		    Export Data
 		  </button>
 		</div>
 		
-		<div className="import-block">
-		  <p>Import data from a previous export.</p>
+		<div className="ie-card">
+		  <h3>Import</h3>
+		  <p>Restore your saved data from a previous export.</p>
 		  
-		  <label className="file-input-label">
+		  <label className="file-picker">
 		    {fileName || "Choose JSON file"}
 			<input
 			  type="file"
@@ -94,7 +97,7 @@ export default function ImportExport() {
 		  </label>
 		</div>
 		
-		{status && <div className="status">{status}</div>}
+		{status && <div className="status-message">{status}</div>}
 	  </section>
 	);
 };

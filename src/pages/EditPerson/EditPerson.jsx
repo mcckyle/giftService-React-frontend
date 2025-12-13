@@ -18,13 +18,16 @@ export default function EditPerson() {
 		async function loadPerson() {
 			const person = await getPerson(id, accessToken);
 			
-			if ( ! person)
+			if (person)
 			{
-				console.warn("Could not find person: " + id);
+				
 				return;
 			}
-			
-			setName(person.name);
+			else
+			{
+				setName(person.name);
+				console.warn("Could not find person: " + id);
+			}
 		}
 		loadPerson();
 	}, [id, accessToken]);
@@ -35,19 +38,20 @@ export default function EditPerson() {
 	}
 	
 	return (
-	  <section className="edit-person-container page-card">
-	    <h2>Edit Person</h2>
+	  <section className="edit-person">
+	    <h1 className="edit-person-title">Edit Person</h1>
 		
-		<div className="form-group">
+		<div className="edit-person-field">
+		  <label>Name</label>
 		    <input
-			  className="input"
+			  className="edit-person-input"
 			  value={name}
 			  onChange={(e) => setName(e.target.value)}
 			  placeholder="Person name"
 			/>
 		</div>
 			
-			<button className="button save-btn" onClick={handleSave}>
+			<button className="edit-person-save" onClick={handleSave}>
 			  Save
 			</button>
 	  </section>

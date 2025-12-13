@@ -18,6 +18,10 @@
 	font-weight: 600;
 }
 
+:root[data-theme="dark"] .person-card h3 {
+	color: #000000;
+}
+
 .actions {
 	display: flex;
 	gap: 0.5rem;

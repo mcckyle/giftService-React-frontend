@@ -7,40 +7,41 @@ import "./GiftCard.css";
 export default function GiftCard({ gift, onUpdated }) {
 	const [open, setOpen] = useState(false);
 	
-	function openModal(e) {
+	function handleOpen(e) {
 		e.stopPropagation();
 		setOpen(true);
 	}
 	
 	return (
 	  <>
-	    <div className={`gift-card ${gift.purchased ? "purchased" : ""}`} onClick={() => setOpen(true)}>
-		  <div className="gift-card-header">
-	      <h3>{gift.title}</h3>
+	    <div
+		  className={`gift-card ${gift.purchased ? "is-purchased" : ""}`}
+		  onClick={() => setOpen(true)}
+		>
+		  <header className="gift-card-header">
+	        <h3 className="gift-title">{gift.title}</h3>
 		  
 		  <button
 		    className="gift-edit-btn"
-			onClick={openModal}
+			onClick={handleOpen}
 		  >
 		    Edit
 		  </button>
-		</div>
+		</header>
 		  
-		  {gift.price && (
-		    <p className="gift-price">
-			  ${Number(gift.price).toFixed(2)}
-			</p>
-		  )}
-		  
-		  {gift.url && (
+		{gift.price && (
+		    <p className="gift-price">${Number(gift.price).toFixed(2)}</p>
+		)}
+		
+		{gift.url && (
 		    <a
-			  className="gift-url"
 			  href={gift.url}
-			  onClick={(e) => e.stopPropagation()}
 			  target="_blank"
 			  rel="noopener noreferrer"
+			  className="gift-url"
+			  onClick={(e) => e.stopPropagation()}
 			>
-			  Link
+			  View Link
 			</a>
 		  )}
 	    </div>

@@ -29,25 +29,26 @@ export default function EditGift({ gift, onClose, onUpdated }) {
 	}
 	
 	return (
-	  <div className="edit-gift-overlay">
-	    <div className="edit-gift-modal">
-		  <h2>Edit Gift</h2>
+	  <div className="edit-gift-overlay" onClick={onClose}>
+	    <div className="edit-gift-modal" onClick={(e) => e.stopPropagation()}>
+		  <h2 className="modal-title">Edit Gift</h2>
 		  
-		  <label>
-		    Title
+		  <div className="modal-field">
+		    <label>Title</label>
 			<input value={title} onChange={(e) => setTitle(e.target.value)} />
-		  </label>
+		  </div>
 		  
-		  <label>
-		    Notes
+		  <div className="modal-field">
+		    <label>Notes</label>
 			<textarea
 			  value={notes}
 			  onChange={(e) => setNotes(e.target.value)}
+			  rows={3}
 			/>
-		  </label>
+		  </div>
 		  
-		  <label>
-		    Price
+		  <div className="modal-field">
+		  <label>Price</label>
 			<input
 			  type="number"
 			  min="0"
@@ -55,14 +56,14 @@ export default function EditGift({ gift, onClose, onUpdated }) {
 			  value={price}
 			  onChange={(e) => setPrice(e.target.value)}
 			/>
-		  </label>
+		  </div>
 		  
-		  <label>
-		    URL
+		  <div className="modal-field">
+		  <label>URL</label>
 			<input value={url} onChange={(e) => setUrl(e.target.value)} />
-		  </label>
+		  </div>
 		  
-		  <label className="purchased-check">
+		  <label className="purchased-toggle">
 		    <input
 			  type="checkbox"
 			  checked={purchased}
@@ -71,7 +72,7 @@ export default function EditGift({ gift, onClose, onUpdated }) {
 			  Mark as purchased
 		  </label>
 		  
-		  <div className="edit-gift-actions">
+		  <div className="modal-actions">
 		    <button className="button" onClick={save}>Save</button>
 			<button className="button ghost" onClick={onClose}>Cancel</button>
 		  </div>
