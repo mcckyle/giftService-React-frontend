@@ -19,8 +19,7 @@ a {
 
 button {
 	font-family: inherit;
-	font-size: var(--font-base);
-	border: none;
+	font-size: inherit;
 	border-radius: var(--radius);
 	padding: 0.65rem 1.1rem;
 	cursor: pointer;
@@ -40,4 +39,9 @@ button:hover {
 
 button:active {
 	transform: translateY(0);
+}
+
+button:disabled {
+	opacity: 0.6;
+	cursor: not-allowed;
 }

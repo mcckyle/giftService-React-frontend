@@ -1,6 +1,5 @@
-// Filename: src/components/Header.jsx
-
-import React, { useEffect, useState, useContext, useRef } from "react";
+// Filename: src/components/Header/Header.jsx
+import { useEffect, useState, useContext, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from '../../context/AuthContext';
 import "./Header.css";  // Import the CSS file here.
@@ -11,14 +10,15 @@ const Header = () => {
   const avatarRef = useRef(null);
   const navigate = useNavigate();
   
-  const handleLogout = async () => {
+  async function handleLogout(){
 	  await logout(); //Call global logout logic.
-	  navigate("/login"); //Redirect AFTER logout state is fully cleared.
+	  //Redirect AFTER logout state is fully cleared.
+	  navigate("/login", { replace: true }); 
   };
   
-  //Close menu on outside click listener.
+  //Close dropdown menu on outside click listener.
   useEffect(() => {
-	  const close = (e) => {
+	  function handleClickOutside(e){
 		  if ( (avatarRef.current) && ( ! avatarRef.current.contains(e.target)) )
 		  {
 			  setMenuOpen(false);
@@ -27,9 +27,9 @@ const Header = () => {
 	  
 	  if (menuOpen)
 	  {
-		  document.addEventListener("mousedown", close);
+		  document.addEventListener("mousedown", handleClickOutside);
 	  }
-	  return () => document.removeEventListener("mousedown", close);
+	  return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [menuOpen]);
   
   return (
@@ -41,36 +41,35 @@ const Header = () => {
 		    Gift Planner
 		  </Link>
 		
-		{/* Desktop Navigation. */}
+		{/* Primary Navigation. */}
 		<nav className="nav">
 		  <Link to="/" className="nav-item">Home</Link>
 		  <Link to="/dashboard" className="nav-item">Dashboard</Link>
-		  <Link to="/profile" className="nav-item">Profile</Link>
 		</nav>
 		
 		{/* Right Side: Auth / User Avatar. */}
-		<div className="right">
+		<div className="header-actions">
 		  {user ? (
 		    <div
-			  className="avatar-area"
+			  className="avatar-wrapper"
 			  ref={avatarRef}
 		      onClick={() => setMenuOpen((o) => ! o)}
 			>
 			  <div className="avatar">
-			    {user.username?.charAt(0)?.toUpperCase() ?? "?"}
+			    {user.username?.charAt(0).toUpperCase() || "?"}
 			  </div>
 			  
 			  <div className={`menu ${menuOpen ? "open" : ""}`}>
 			    <Link to="/profile" className="menu-item">Profile</Link>
 				<Link to="/settings" className="menu-item">Settings</Link>
 				<div className="menu-divider" />
-				<button className="menu-item logout" onClick={handleLogout}>
+				<button className="menu-item danger" onClick={handleLogout}>
 				  Logout
 				</button>
 			  </div>
 			</div>
 		) : (
-		  <div className="auth-actions">
+		  <div className="auth-links">
 		    <Link to="/login" className="auth-link">Login</Link>
 		    <Link to="/register" className="auth-link primary">Register</Link>
 		  </div>

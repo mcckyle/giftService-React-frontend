@@ -45,7 +45,7 @@ const HomePage = () => {
 		  <article className="home-card">
 		    <h2 className="card-title">Give with Intention</h2>
 			<p className="card-text">
-			  Build thoughtful gift histories that help every gift feel personal.
+			  Build thoughtful gift histories that make every gift feel personal.
 			</p>
 		  </article>
 		</section>

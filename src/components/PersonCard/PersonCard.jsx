@@ -5,25 +5,28 @@ import "./PersonCard.css";
 
 export default function PersonCard({ person, onDelete }) {
 	return (
-	  <div className="person-card">
-		<h3>{person.name}</h3>
+	  <article className="person-card">
+	    <header className="person-card-header">
+		  <span className="person-eyebrow">Recipient</span>
+		  <h3 className="person-name">{person.name}</h3>
+		</header>
 		
-		<div className="actions">
-		  <Link to={`/person/${person.id}`}>
-		    <button className="button small">View Gifts</button>
+		<footer className="person-actions">
+		  <Link to={`/person/${person.id}`} className="person-link">
+		    View Gifts
 		  </Link>
 		  
-		  <Link to={`/person/${person.id}/edit`}>
-		    <button className="button small secondary">Edit</button>
+		  <Link to={`/person/${person.id}/edit`} className="person-link subtle">
+		    Edit
 		  </Link>
 		  
 		  <button
-		    className="button small danger"
+		    className="person-link danger"
 			onClick={() => onDelete(person.id)}
 		  >
 		    Delete
 		  </button>
-	    </div>
-	  </div>
+	    </footer>
+	  </article>
 	);
 }

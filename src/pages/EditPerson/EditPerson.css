@@ -1,78 +1,78 @@
 /* Filename: src/pages/EditPerson/EditPerson.css */
 
 .edit-person {
-	max-width: 480px;
-	margin: 2.5rem auto;
-	padding: 2rem;
-	border-radius: 20px;
-	background: rgba(255, 255, 255, 0.8);
-	box-shadow: 0 8px 26px rgba(0, 0, 0, 0.08);
+	max-width: 420px;
+	margin: 3rem auto;
+	padding: var(--space-xl);
 	
 	display: flex;
 	flex-direction: column;
-	gap: 1.6rem;
+	gap: var(--space-lg);
 	
-	animation: fadeIn 0.3s ease-out;
+	background: var(--color-surface);
+	border-radius: var(--radius);
+	box-shadow: var(--shadow-sm);
+	
+	animation: fadeIn 0.3s ease forwards;
 }
 
-.edit-person-title {
+.edit-person-header {
 	text-align: center;
-	font-size: 1.8rem;
-	font-weight: 700;
-	margin: 0;
-	color: var(--color-text);
+	display: flex;
+	flex-direction: column;
+	gap: var(--space-xs);
+}
+
+.edit-person-header h1 {
+	font-size: var(--font-card-title);
+	font-weight: 600;
+}
+
+.edit-person-header p {
+	font-size: var(--font-base);
+	opacity: 0.7;
 }
 
 .edit-person-field {
 	display: flex;
 	flex-direction: column;
-	gap: 0.4rem;
+	gap: 0.35rem;
 }
 
 .edit-person-field label {
-	font-size: 0.95rem;
+	font-size: 0.85rem;
 	font-weight: 500;
 	opacity: 0.85;
 }
 
-.edit-person-input {
-	width: 100%;
-	padding: 0.75rem 1rem;
+.edit-person-field input {
+	padding: 0.7rem 0.9rem;
+	font-size: var(--font-base);
 	
-	font-size: 1rem;
 	border-radius: 14px;
-	border: 1px solid #d3d3d3;
-	background: rgba(255, 255, 255, 0.9);
+	border: 1px solid rgba(0, 0, 0, 0.15);
+	background: transparent;
+	color: #fff;
 	
-	transition: border-color 0.2s ease, box-shadow 0.2s ease;
+	transition: border-color var(--transition-fast),
+	            box-shadow var(--transition-fast);
 }
 
-.edit-person-input:focus {
+.edit-person-field input:focus {
 	border-color: var(--color-primary);
-	box-shadow: 0 0 0 3px rgba(75, 123, 253, 0.22);
+	box-shadow: 0 0 0 2px rgba(75, 123, 253, 0.2);
 	outline: none;
 }
 
-.edit-person-save {
-	width: 100%;
-	padding: 0.95rem;
-	font-size: 1.05rem;
-	font-weight: 600;
-	border: none;
-	border-radius: 16px;
-	background: var(--color-primary);
-	color: white;
-	cursor: pointer;
-	
-	transition: transform 0.15s ease, opacity 0.2s ease;
+.edit-person-actions {
+	display: flex;
+	gap: var(--space-sm);
+	margin-top: var(--space-sm);
 }
 
-.edit-person-save:hover {
-	opacity: 0.93;
-	transform: translateY(-1px);
-}
+.edit-person-actions .btn { flex: 1; }
 
 @keyframes fadeIn {
-	from { opacity: 0; transform: translateY(12px); }
+	from { opacity: 0; transform: translateY(8px); }
 	to { opacity: 1; transform: translateY(0); }
 }

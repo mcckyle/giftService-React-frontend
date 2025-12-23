@@ -17,6 +17,7 @@
   
   --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
   --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.12);
+  --shadow-lg: 0 6px 18px rgba(0, 0, 0, 0.16);
   
   --font-base: 1rem; /* Medium Default. */
   --font-small: 0.9rem;
@@ -49,5 +50,6 @@
 html, body {
 	font-size: var(--font-base);
 	
-	transition: background var(--transition-fast), color var(--transition-fast);
+	transition: background var(--transition-fast),
+	            color var(--transition-fast);
 }

@@ -1,12 +1,13 @@
 //Filename: src/components/EditGift/EditGift.jsx
 
-import { useState, useContext } from "react";
+import { useContext, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
-import { updateGift } from "../../services/GiftService";
+import { updateGift, deleteGift } from "../../services/GiftService";
 import "./EditGift.css";
 
-export default function EditGift({ gift, onClose, onUpdated }) {
+export default function EditGift({ gift, onClose, onUpdated, onDeleted }) {
 	const { accessToken } = useContext(AuthContext);
+	const [deleting, setDeleting] = useState(false);
 	
 	const [title, setTitle] = useState(gift.title);
 	const [notes, setNotes] = useState(gift.notes || "");
@@ -28,53 +29,111 @@ export default function EditGift({ gift, onClose, onUpdated }) {
 		onClose();
 	}
 	
+	async function handleDelete() {
+		const confirmed = window.confirm(
+		  `Delete "${gift.title}"? This cannot be undone.`
+		);
+		
+		if ( ! confirmed)
+		{
+			return;
+		}
+		
+		setDeleting(true);
+		
+		try
+		{
+			await deleteGift(gift.id, accessToken);
+			onDeleted(gift.id);
+			onClose();
+		}
+		catch (error)
+		{
+			console.error(error);
+			alert("Failed to delete gift.");
+		}
+		finally
+		{
+			setDeleting(false);
+		}
+	}
+	
 	return (
 	  <div className="edit-gift-overlay" onClick={onClose}>
-	    <div className="edit-gift-modal" onClick={(e) => e.stopPropagation()}>
-		  <h2 className="modal-title">Edit Gift</h2>
+	    <div
+		  className="edit-gift-modal"
+		  onClick={(e) => e.stopPropagation()}
+		  role="dialog"
+		  aria-modal="true"
+		>
+		  <header className="edit-gift-header">
+		    <h2 className="edit-gift-title">Edit Gift</h2>
+			<p className="edit-gift-subtitle">
+			  Update details or mark this gift as purchased.
+			</p>
+		  </header>
 		  
-		  <div className="modal-field">
+		  <div className="edit-gift-field">
 		    <label>Title</label>
-			<input value={title} onChange={(e) => setTitle(e.target.value)} />
+			<input
+			  value={title}
+			  onChange={(e) => setTitle(e.target.value)}
+			/>
 		  </div>
 		  
-		  <div className="modal-field">
+		  <div className="edit-gift-field">
 		    <label>Notes</label>
 			<textarea
+			  rows={3}
 			  value={notes}
 			  onChange={(e) => setNotes(e.target.value)}
-			  rows={3}
 			/>
 		  </div>
 		  
-		  <div className="modal-field">
-		  <label>Price</label>
-			<input
-			  type="number"
-			  min="0"
-			  step="0.01"
-			  value={price}
-			  onChange={(e) => setPrice(e.target.value)}
-			/>
+		  <div className="edit-gift-field">
+		    <label>Price</label>
+			  <input
+			    type="number"
+			    min="0"
+			    step="0.01"
+			    value={price}
+			    onChange={(e) => setPrice(e.target.value)}
+			  />
 		  </div>
 		  
-		  <div className="modal-field">
-		  <label>URL</label>
-			<input value={url} onChange={(e) => setUrl(e.target.value)} />
+		  <div className="edit-gift-field">
+		    <label>URL</label>
+			  <input
+			    value={url}
+			    onChange={(e) => setUrl(e.target.value)}
+			  />
 		  </div>
 		  
-		  <label className="purchased-toggle">
+		  <label className="edit-gift-toggle">
 		    <input
 			  type="checkbox"
 			  checked={purchased}
 			  onChange={(e) => setPurchased(e.target.checked)}
 			/>
-			  Mark as purchased
+			  <span>Mark as purchased</span>
 		  </label>
 		  
-		  <div className="modal-actions">
-		    <button className="button" onClick={save}>Save</button>
-			<button className="button ghost" onClick={onClose}>Cancel</button>
+		  <div className="edit-gift-actions">
+		    <button className="button" onClick={save}>
+			  Save
+			</button>
+			
+			<button
+			  className="gift-delete-btn"
+			  onClick={handleDelete}
+			  disabled={deleting}
+			>
+			  Delete
+			</button>
+			
+			<button className="button ghost" onClick={onClose}>
+			  Cancel
+			</button>
 		  </div>
 		</div>
 	  </div>

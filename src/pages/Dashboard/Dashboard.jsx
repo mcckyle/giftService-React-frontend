@@ -22,7 +22,7 @@ export default function Dashboard() {
 	}, [accessToken]);
 	
 	function handleAdded(person) {
-		setPeople(prev => [...prev, person]);
+		setPeople((prev) => [...prev, person]);
 	}
 	
 	async function handleDeletePerson(id) {
@@ -33,19 +33,34 @@ export default function Dashboard() {
 	return (
 	  <Layout>
 	    <header className="dashboard-header">
-		  <h1 className="dashboard-title">Your People</h1>
+		  <div className="dashboard-heading">
+		    <h1 className="dashboard-title">Your People</h1>
+			<p className="dashboard-subtitle">
+			  A simple place to organize everyone that you enjoy gifting to.
+			</p>
+		  </div>
+		  
 		  <AddPerson onAdded={handleAdded} />
 		</header>
 		
-		<section className="people-list">
-		  {people.map(p => (
-		    <PersonCard
-			  key={p.id}
-			  person={p}
-			  onDelete={handleDeletePerson}
-			/>
-		  ))}
-		</section>
+		{people.length === 0 ? (
+		  <div className="dashboard-empty">
+		    <h2>Start your gift list</h2>
+		    <p>
+		      Add someone to begin collecting thoughtful gift ideas and memories.
+		    </p>
+		  </div>
+		) : (
+		  <section className="people-list">
+		    {people.map(p => (
+		      <PersonCard
+			    key={p.id}
+			    person={p}
+			    onDelete={handleDeletePerson}
+			  />
+		    ))}
+		  </section>
+		)}
 	  </Layout>
 	);
 }

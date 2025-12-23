@@ -1,4 +1,4 @@
-//Filename: src/components/Profile.jsx
+//Filename: src/components/Profile/Profile.jsx
 
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -26,18 +26,18 @@ const Profile = () => {
 			bio: user.bio || "",
 		});
 		setOpenEdit(true);
-	}
-	
-	function closeEditor() {
-		setOpenEdit(false);
-	}
-	
-	function handleChange(e) {
-		setEditData({ ...editData, [e.target.name]: e.target.value });
+		setError("");
 	};
+	const closeEditor = () => setOpenEdit(false);
+	const handleChange = (e) => setEditData({ ...editData, [e.target.name]: e.target.value });
 	
 	//Save profile changes.
-	async function handleSave() {
+	const handleSave = async() => {
+		if ( ( ! editData.username.trim() ) || ( ! editData.email.trim()) )
+		{
+			return;
+		}
+		
 		try
 		{
 			setSaving(true);
@@ -71,10 +71,10 @@ const Profile = () => {
 		}
 	};
 	
-	async function handleLogout() {
+	const handleLogout = async () => {
 		await logout();
 		navigate("/signin", { replace: true });
-	}
+	};
 	
 	//Early return if user is null.
 	if ( ! user)
@@ -85,25 +85,34 @@ const Profile = () => {
 	}
 	
 	return (
-	  <section className="page-card profile-card">
-	    <h1 className="profile-title">Welcome, {user.username}!</h1>
+	  <section className="profile-card">
+	    <header className="profile-header">
+		  <h1>{user.username}</h1>
+		  <p>Account details</p>
+		</header>
 		
 		<div className="profile-info">
-		  <p><strong>Email:</strong> {user.email}</p>
-		  <p><strong>Bio:</strong> {user.bio || "No bio yet."}</p>
+		  <div>
+		    <span>Email</span>
+			<p>{user.email}</p>
+		  </div>
+		  <div>
+		    <span>Bio</span>
+		    <p>{user.bio || "No bio added yet."}</p>
+		  </div>
 		</div>
 		
 		<div className="profile-actions">
 		    <button className="button" onClick={openEditor}>Edit Profile</button>
-			<button className="button danger" onClick={handleLogout}>Logout</button>
-		  </div>
+			<button className="button danger" onClick={handleLogout}>Log out</button>
+		</div>
 		  
-		  {error && <p className="profile-error">{error}</p>}
+		{error && <p className="profile-error">{error}</p>}
 		  
-		  {/* Modal */}
-		  {openEdit && (
-		   <div className="modal-overlay">
-		    <div className="modal-card">
+		{/* Modal */}
+		{openEdit && (
+		   <div className="modal-overlay" onClick={closeEditor}>
+		    <div className="modal-card" onClick={(e) => e.stopPropagation()}>
 			  <h2>Edit Profile</h2>
 			  
 			  <input
@@ -128,7 +137,7 @@ const Profile = () => {
 			    name="bio"
 				value={editData.bio}
 				onChange={handleChange}
-				placeholder="Bio"
+				placeholder="Short bio"
 			  />
 			  
 			  <div className="modal-actions">
@@ -137,7 +146,7 @@ const Profile = () => {
 				  onClick={handleSave}
 				  disabled={saving}
 				>
-				  {saving ? "Saving..." : "Save"}
+				  {saving ? "Saving..." : "Save changes"}
 				</button>
 				
 				<button className="button secondary" onClick={closeEditor}>

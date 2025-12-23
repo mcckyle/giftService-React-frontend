@@ -22,16 +22,17 @@ export default function AddPerson({ onAdded }) {
 	}
 	
 	return (
-	  <form className="add-person-form" onSubmit={submit}>
+	  <form className="add-person" onSubmit={submit}>
 	    <input
-		  className="input"
+		  className="add-person-input"
 		  placeholder="Add someone..."
 		  value={name}
 		  onChange={(e) => setName(e.target.value)}
+		  aria-label="Add person"
 		/>
 		
-		<button className="button" type="submit">
-		  Add
+		<button className="add-person-button" type="submit">
+		  Add Person
 		</button>
 	  </form>
 	);

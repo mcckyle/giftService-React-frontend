@@ -18,14 +18,12 @@
 }
 
 /* Section Styles. */
-.settings-section {
-	margin-bottom: 48px;
-}
+.settings-section { margin-bottom: 48px; }
 
 .settings-section-title {
 	font-size: 1.25rem;
 	font-weight: 600;
-	margin-bottom: 18px;
+	margin-bottom: 20px;
 }
 
 /* Settings Cards Styles. */
@@ -46,13 +44,11 @@
 
 .settings-card:hover {
 	transform: translateY(-3px);
-	box-shadow: var(--shadow-md);
+	box-shadow: var(--shadow-lg);
 }
 
 /* Card Header Styles. */
-.settings-card-header {
-	margin-bottom: 16px;
-}
+.settings-card-header { margin-bottom: 18px; }
 
 .settings-card-title {
 	font-size: 1.1rem;
@@ -105,9 +101,7 @@
 }
 
 /* Danger Button Styles. */
-.settings-action-btn.danger {
-	background: #e45757;
-}
+.settings-action-btn.danger { background: #e45757; }
 
 /* Modal Input Styles. */
 .modal-input {

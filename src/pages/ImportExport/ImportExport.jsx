@@ -11,31 +11,37 @@ export default function ImportExport() {
 	const [status, setStatus] = useState("");
 	
 	async function handleExport() {
-		setStatus("Exporting...");
+		setStatus("Exporting data...");
 		
-		const response = await fetch("http://localhost:8080/api/export", {
-			headers: { Authorization: `Bearer ${accessToken}` },
-		});
-		
-		if ( ! response.ok) {
-			setStatus("Failed to export.");
-			return;
+		try
+		{
+			const response = await fetch("http://localhost:8080/api/export", {
+				headers: { Authorization: `Bearer ${accessToken}` },
+			});
+			
+			if ( ! response.ok) {
+				throw new Error();
+			}
+			
+			const data = await response.json();
+			
+			const blob = new Blob([JSON.stringify(data, null, 2)], {
+				type: "application/json",
+			});
+			
+			const url = URL.createObjectURL(blob);
+			const a = document.createElement("a");
+			a.href = url;
+			a.download = "giftplanner-export.json";
+			a.click();
+			
+			URL.revokeObjectURL(url);
+			setStatus("Export complete!");
 		}
-		
-		const data = await response.json();
-		
-		const blob = new Blob([JSON.stringify(data, null, 2)], {
-			type: "application/json",
-		});
-		
-		const url = URL.createObjectURL(blob);
-		const a = document.createElement("a");
-		a.href = url;
-		a.download = "giftplanner-export.json";
-		a.click();
-		
-		URL.revokeObjectURL(url);
-		setStatus("Export complete.");
+		catch
+		{
+			setStatus("Export failed!");
+		}
 	}
 	
 	async function handleImport(e) {
@@ -47,45 +53,56 @@ export default function ImportExport() {
 		}
 		
 		setFileName(file.name);
-		setStatus("Importing...");
+		setStatus("Importing data...");
 		
-		const text = await file.text();
-		const json = JSON.parse(text);
-		
-		const response = await fetch("http://localhost:8080/api/import", {
-			method: "POST",
-			headers: {
-				Authorization: `Bearer ${accessToken}`,
-				"Content-Type": "application/json",
-			},
-			body: JSON.stringify(json),
-		});
-		
-		if ( ! response.ok)
+		try
 		{
-			setStatus("Failed to import.");
-			return;
+			const text = await file.text();
+			const json = JSON.parse(text);
+			
+			const response = await fetch("http://localhost:8080/api/import", {
+				method: "POST",
+				headers: {
+					Authorization: `Bearer ${accessToken}`,
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify(json),
+			});
+			
+			if ( ! response.ok)
+			{
+				throw new Error();
+			}
+			
+			setStatus("Import complete.");
 		}
-		
-		setStatus("Import complete.");
+		catch
+		{
+			setStatus("Import failed!");
+		}
 	}
 	
 	return (
-	  <section className="page-card import-export">
-	    <h2 className="ie-title">Import / Export </h2>
+	  <section className="import-export">
+	    <header className="ie-header">
+		  <h1 className="ie-title">Import & Export </h1>
+		  <p className="ie-subtitle">
+		    Back up your data or restore it from a previous save.
+		  </p>
+		</header>
 		
 		<div className="ie-card">
-		  <h3>Export</h3>
-		  <p>Your complete people + gift data in one file.</p>
+		  <h3>Export Data</h3>
+		  <p>Download a complete backup of your people and gifts.</p>
 		  
 		  <button className="button" onClick={handleExport}>
-		    Export Data
+		    Export JSON
 		  </button>
 		</div>
 		
 		<div className="ie-card">
-		  <h3>Import</h3>
-		  <p>Restore your saved data from a previous export.</p>
+		  <h3>Import Data</h3>
+		  <p>Restore your planner from an exported JSON file.</p>
 		  
 		  <label className="file-picker">
 		    {fileName || "Choose JSON file"}
@@ -97,7 +114,7 @@ export default function ImportExport() {
 		  </label>
 		</div>
 		
-		{status && <div className="status-message">{status}</div>}
+		{status && <p className="ie-status">{status}</p>}
 	  </section>
 	);
 };

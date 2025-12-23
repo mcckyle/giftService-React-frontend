@@ -17,7 +17,7 @@ export default function PersonDetail() {
 	useEffect(() => {
 		async function load() {
 			const data = await getGifts(id, accessToken);
-			setGifts(data);
+			setGifts(data || []);
 		}
 		load();
 	}, [id, accessToken]);
@@ -27,27 +27,50 @@ export default function PersonDetail() {
 	}
 	
 	function handleGiftUpdated(updatedGift) {
-		setGifts(prev =>
+		setGifts((prev) =>
 		  prev.map((g) => (g.id === updatedGift.id ? updatedGift : g))
+		);
+	}
+	
+	function handleGiftDeleted(deletedId) {
+		setGifts((prev) =>
+		  prev.filter((g) => g.id !== deletedId)
 		);
 	}
 	
 	return (
 	  <Layout>
 	    <header className="person-detail-header">
-		  <h1>Gift Ideas</h1>
+		  <div className="person-detail-heading">
+		    <h1 className="person-detail-title">Gift Ideas</h1>
+			<p className="person-detail-subtitle">
+			  A focused space for capturing thoughtful, meaningful gift ideas.
+			</p>
+		  </div>
+		  
 		  <AddGift personId={id} onAdded={handleAdded} />
 		</header>
 		
-		<section className="gifts-grid">
-		  {gifts.map((g) => (
-		    <GiftCard
-			  key={g.id}
-			  gift={g}
-			  onUpdated={handleGiftUpdated}
-			/>
-		  ))}
-		</section>
+		{gifts.length === 0 ? (	
+		  <div className="person-detail-empty">
+		    <h2>No gift ideas yet</h2>
+			<p>
+			  Start by adding a small idea - even rough thoughts can turn into
+			  something meaningful.
+			</p>
+		  </div>
+		) : (
+			<section className="gifts-grid">
+			  {gifts.map((g) => (
+				<GiftCard
+				  key={g.id}
+				  gift={g}
+				  onUpdated={handleGiftUpdated}
+				  onDeleted={handleGiftDeleted}
+				/>
+			  ))}
+			</section>
+		)}
 	  </Layout>
 	);
 }

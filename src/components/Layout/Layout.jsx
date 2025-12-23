@@ -5,13 +5,23 @@ import "./Layout.css";
 
 export default function Layout({ children }) {
 	return (
-	  <div className="layout-shell">
+	  <section className="layout">
 	    <nav className="layout-nav">
-		  <NavLink to="/dashboard" className="nav-link">
+		  <NavLink
+		    to="/dashboard"
+			className={({ isActive }) =>
+			  `layout-link ${isActive ? "active" : ""}`
+			}
+		  >
 		    Dashboard
 		  </NavLink>
 		  
-		  <NavLink to="/import" className="nav-link">
+		  <NavLink
+		    to="/import"
+			className={({ isActive }) =>
+			  `layout-link ${isActive ? "active" : ""}`
+			}
+		  >
 		    Import / Export
 		  </NavLink>
 		</nav>
@@ -19,6 +29,6 @@ export default function Layout({ children }) {
 		<main className="layout-content">
 		  {children}
 		</main>
-	  </div>
+	  </section>
 	);
 }

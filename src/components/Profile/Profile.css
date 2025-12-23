@@ -1,44 +1,65 @@
-/* Filename: Profile.css */
+/* Filename: src/components/Profile/Profile.css */
 
 /* Profile Container Styles. */
 .profile-card {
-	max-width: 600px;
-	margin: 0 auto;
-	padding: 2rem;
+	max-width: 620px;
+	margin: 2rem auto;
+	padding: 2.5rem;
+	border-radius: 18px;
+	background: var(--color-surface);
+	box-shadow: var(--shadow-md);
+	display: flex;
+	flex-direction: column;
+	gap: 2rem;
 }
 
-/* Profile Title Styles. */
-.profile-title {
-	text-align: center;
-	font-size: 1.8rem;
+.profile-header { text-align: center; }
+
+.profile-header h1 {
+	font-size: 2rem;
 	font-weight: 600;
-	margin-bottom: 1.5rem;
+	margin: 0;
+}
+
+.profile-header p {
+	margin-top: 0.35rem;
+	font-size: 0.95rem;
+	opacity: 0.65;
 }
 
 /* Profile Info Section Styles. */
 .profile-info {
 	display: flex;
 	flex-direction: column;
-	gap: 0.75rem;
-	color: #333;
-	line-height: 1.5;
+	gap: 1.5rem;
 }
 
-.profile-info strong {
-	font-weight: 600;
-	color: #111;
+.profile-info span {
+	display: block;
+	font-size: 0.8rem;
+	text-transform: uppercase;
+	opacity: 0.6;
+	margin-bottom: 0.15rem;
+	letter-spacing: 0.03em;
+}
+
+.profile-info p {
+	margin: 0;
+	font-size: 1rem;
+	line-height: 1.5;
 }
 
 .profile-actions {
 	display: flex;
-	gap: 0.75rem;
-	margin-top: 1.75rem;
+	gap: 1rem;
+	justify-content: center;
 }
+.button.danger { background: #e25555; color: #fff; }
 
 .profile-error {
-	color: #e45858;
 	margin-top: 1rem;
 	font-size: 0.9rem;
+	color: #e25555;
 	text-align: center;
 }
 
@@ -46,38 +67,50 @@
 .modal-overlay {
 	position: fixed;
 	inset: 0;
-	background: rgba(0, 0, 0, 0.45);
+	background: rgba(0, 0, 0, 0.35);
 	display: flex;
-	justify-content: center;
 	align-items: center;
-	padding: 1.25rem;
+	justify-content: center;
+	padding: 1rem;
 	z-index: 1000;
 }
 
 /* Modal Card Styles. */
 .modal-card {
-	background: #fff;
-	padding: 2rem;
-	border-radius: 14px;
+	background: var(--color-surface);
 	width: 100%;
-	max-width: 420px;
+	max-width: 440px;
+	padding: 2rem;
+	border-radius: 20px;
 	display: flex;
 	flex-direction: column;
 	gap: 1rem;
-	box-shadow: 0 12px 40px rgba(0, 0, 0, 0.16);
+	box-shadow: 0 12px 36px rgba(0, 0, 0, 0.18);
 	
 	animation: fadeScale 0.25s ease;
 }
 
 .modal-card h2 {
-	margin: 0;
-	text-align: center;
-	font-size: 1.4rem;
+	margin: 0 0 0.5rem;
+	font-size: 1.5rem;
 	font-weight: 600;
+	text-align: center;
 }
 
 .input {
 	width: 100%;
+	padding: 0.75rem 1rem;
+	border-radius: 12px;
+	border: 1px solid rgba(0, 0, 0, 0.15);
+	font-size: 1rem;
+	
+	transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.input:focus {
+	outline: none;
+	border-color: var(--color-primary);
+	box-shadow: 0 0 0 3px rgba(75, 123, 253, 0.12);
 }
 
 .textarea {
@@ -87,11 +120,12 @@
 
 .modal-actions {
 	display: flex;
+	justify-content: flex-end;
 	gap: 0.75rem;
-	margin-top: 0.5rem;
+	margin-top: 1rem;
 }
 
 @keyframes fadeScale {
-	from { opacity: 0; transform: scale(0.95); }
+	from { opacity: 0; transform: scale(0.96); }
 	to { opacity: 1; transform: scale(1); }
 }

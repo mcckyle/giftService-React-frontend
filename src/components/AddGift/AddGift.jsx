@@ -22,15 +22,16 @@ export default function AddGift({ personId, onAdded }) {
 	}
 	
 	return (
-	  <form className="add-gift-form" onSubmit={submit}>
+	  <form className="add-gift" onSubmit={submit}>
 	    <input
-		  className="input"
-		  placeholder="Add gift idea..."
+		  className="add-gift-input"
+		  placeholder="Add a gift idea..."
 		  value={title}
 		  onChange={(e) => setTitle(e.target.value)}
+		  aria-label="Add gift idea"
 		/>
 		
-		<button className="button" type="submit">
+		<button className="add-gift-button" type="submit">
 		  Add
 		</button>
 	  </form>

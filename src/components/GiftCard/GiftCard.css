@@ -1,72 +1,78 @@
 /* Filename: src/components/GiftCard/GiftCard.css */
 
 .gift-card {
-	background: #fff;
-	padding: 1rem 1.25rem;
-	border-radius: 12px;
-	border: 1px solid rgba(0, 0, 0, 0.08);
+	background: var(--color-surface);
+	padding: var(--space-lg);
+	border-radius: var(--radius);
+	box-shadow: var(--shadow-sm);
 	cursor: pointer;
-	margin-bottom: 1rem;
 	
-	transition: box-shadow 0.2s ease;
+	display: flex;
+	flex-direction: column;
+	gap: var(--space-sm);
+	
+	transition: transform var(--transition-fast),
+	            box-shadow var(--transition-fast);
 }
 
 .gift-card:hover {
-	box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+	transform: translateY(-3px);
+	box-shadow: var(--shadow-md);
 }
+.gift-card.purchased { opacity: 0.85; }
 
-.gift-card.is-purchased {
-	border-left: 5px solid #4caf50;
+.gift-card.purchased .gift-title {
+	text-decoration: line-through;
+	opacity: 0.75;
 }
 
 .gift-card-header {
 	display: flex;
+	align-items: flex-start;
 	justify-content: space-between;
-	align-items: center;
-	margin-bottom: 0.5rem;
+	gap: var(--space-sm);
 }
 
 .gift-title {
-	font-size: 1.1rem;
+	font-size: var(--font-large);
 	font-weight: 600;
-	opacity: 0.9;
-}
-
-:root[data-theme="dark"] .gift-title {
-	color: #000000;
+	line-height: 1.35;
+	color: var(--color-text);
 }
 
 .gift-edit-btn {
-	border: 1px solid rgba(0, 0, 0, 0.15);
 	background: transparent;
-	padding: 0.35rem 0.6rem;
-	border-radius: 6px;
+	border: none;
+	padding: 0.25rem 0.5rem;
+	
 	font-size: 0.85rem;
+	font-weight: 500;
+	color: var(--color-text);
+	opacity: 0.6;
 	cursor: pointer;
 	
-	transition: background 0.2s ease, border-color 0.2s ease;
+	transition: opacity var(--transition-fast);
 }
+.gift-card:hover gift-edit-btn { opacity: 0.9; }
 
 .gift-edit-btn:hover {
-	background: #f6f6f6;
-	border-color: rgba(0, 0, 0, 0.25);
+	opacity: 1;
+	color: var(--color-primary);
 }
 
 .gift-price {
 	font-size: 0.95rem;
 	font-weight: 500;
-	opacity: 0.8;
-	margin: 0.25rem 0;
+	opacity: 0.75;
 }
 
-.gift-url {
-	display: inline-block;
-	margin-top: 0.35rem;
+.gift-link {
+	align-self: flex-start;
 	font-size: 0.9rem;
-	color: #0077cc;
+	font-weight: 500;
+	color: var(--color-primary);
 	text-decoration: none;
+	
+	transition: opacity var(--transition-fast);
 }
-
-.gift-url:hover {
-	text-decoration: underline;
-}
+.gift-link:hover { opacity: 0.85; }

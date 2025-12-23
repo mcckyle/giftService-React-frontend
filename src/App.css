@@ -1,16 +1,17 @@
 /* Filename: src/App.css */
 
-/* Page Wrapper ensures consistent horizontal alignment. */
+/* Page Wrapper for consistent horizontal width. */
 .page-wrapper {
 	width: 100%;
-	max-width: 900px;
+	max-width: 920px;
 	margin: var(--space-xl) auto;
 	padding: 0 var(--space-md);
 }
 
 /* Simple Fallback Page (404, etc.) Styles. */
 .not-found {
-	margin-top: var(--space-xl);
+	margin-top: var(--space-xxl);
 	text-align: center;
-	opacity: 0.6;
+	font-size: 1.1rem;
+	opacity: 0.55;
 }

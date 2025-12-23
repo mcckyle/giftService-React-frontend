@@ -70,14 +70,14 @@ const Settings = () => {
 			
 			if ( ! response.ok)
 			{
-				throw new Error("Failed to update password.");
+				throw new Error();
 			}
 			
 			toast.success("Password updated successfully!");
 			setShowChangePassword(false);
 			setNewPassword("");
 		}
-		catch (error)
+		catch
 		{
 			toast.error("Unable to update password.");
 		}
@@ -93,13 +93,13 @@ const Settings = () => {
 			
 			if ( ! response.ok)
 			{
-				throw new Error("Failed to delete account.");
+				throw new Error();
 			}
 			
 			toast.success("Account deleted.");
 			window.location.href = "/login";
 		}
-		catch (error)
+		catch
 		{
 			toast.error("Unable to delete account.");
 		}
@@ -119,40 +119,19 @@ const Settings = () => {
 			  <h3 className="settings-card-title">Theme</h3>
 			  <p className="settings-card-subtitle">Choose how the planner appears</p>
 			</div>
-			
 			<div className="settings-options">
-			  <label className="settings-option">
+			  {["light", "dark", "system"].map((t) => (
+			    <label key={t} className="settings-option">
 			    <input
 				  type="radio"
 				  name="theme"
-				  value="light"
-				  checked={theme === "light"}
+				  value={t}
+				  checked={theme === t}
 				  onChange={(e) => setTheme(e.target.value)}
 				/>
-				  Light
+				  {t.charAt(0).toUpperCase() + t.slice(1)}
 			  </label>
-			  
-			  <label className="settings-option">
-			    <input
-				  type="radio"
-				  name="theme"
-				  value="dark"
-				  checked={theme === "dark"}
-				  onChange={(e) => setTheme(e.target.value)}
-				/>
-				  Dark
-			  </label>
-			  
-			  <label className="settings-option">
-			    <input
-				  type="radio"
-				  name="theme"
-				  value="system"
-				  checked={theme === "system"}
-				  onChange={(e) => setTheme(e.target.value)}
-				/>
-				  System Default
-			  </label>
+			  ))}
 			</div>
 		  </div>
 		  
@@ -160,42 +139,22 @@ const Settings = () => {
 		  	<div className="settings-card">
 		      <div className="settings-card-header">
 			    <h3 className="settings-card-title">Font Size</h3>
-			    <p className="settings-card-subtitle">Adjust text size for better comfort</p>
+			    <p className="settings-card-subtitle">Adjust text size for comfort</p>
 			  </div>
-			
-			<div className="settings-options">
-			  <label className="settings-option">
-			    <input
-				  type="radio"
-				  name="fontsize"
-				  value="small"
-				  checked={fontSize === "small"}
-				  onChange={(e) => setFontSize(e.target.value)}
-				/>
-				  Small
-			  </label>
 			  
-			  <label className="settings-option">
+			  <div className="settings-options">
+			    {["small", "medium", "large"].map((size) => (
+				<label key={size} className="settings-option">
 			    <input
 				  type="radio"
 				  name="fontsize"
-				  value="medium"
-				  checked={fontSize === "medium"}
+				  value={size}
+				  checked={fontSize === size}
 				  onChange={(e) => setFontSize(e.target.value)}
 				/>
-				  Medium
+				  {size.charAt(0).toUpperCase() + size.slice(1)}
 			  </label>
-			  
-			  <label className="settings-option">
-			    <input
-				  type="radio"
-				  name="fontsize"
-				  value="large"
-				  checked={fontSize === "large"}
-				  onChange={(e) => setFontSize(e.target.value)}
-				/>
-				  Large
-			  </label>
+			))}
 			</div>
 		  </div>
 		</section>
@@ -203,13 +162,11 @@ const Settings = () => {
 		{/* Account Section. */}
 		<section className="settings-section">
 		  <h2 className="settings-section-title">Account</h2>
-		  
 		  <div className="settings-card">
 		    <div className="settings-card-header">
 			  <h3 className="settings-card-title">Manage Account</h3>
 			  <p className="settings-card-subtitle">Update or secure your account</p>
 			</div>
-			
 			<div className="settings-actions">
 			  <button
 			    className="settings-action-btn"

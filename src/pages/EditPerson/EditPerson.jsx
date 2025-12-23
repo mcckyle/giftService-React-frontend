@@ -13,47 +13,68 @@ export default function EditPerson() {
 	const { accessToken } = useContext(AuthContext);
 	
 	const [name, setName] = useState("");
+	const [loading, setLoading] = useState(true);
 	
 	useEffect(() => {
 		async function loadPerson() {
 			const person = await getPerson(id, accessToken);
 			
-			if (person)
+			if ( ! person)
 			{
-				
+				navigate("/dashboard");
 				return;
 			}
-			else
-			{
-				setName(person.name);
-				console.warn("Could not find person: " + id);
-			}
+			
+			setName(person.name);
+			setLoading(false);
 		}
 		loadPerson();
-	}, [id, accessToken]);
+	}, [id, accessToken, navigate]);
 	
 	async function handleSave() {
+		if ( ! name.trim())
+		{
+			return;
+		}
+		
 		await updatePerson(id, { name }, accessToken);
 		navigate("/dashboard");
 	}
 	
+	if (loading)
+	{
+		return null;
+	}
+	
 	return (
 	  <section className="edit-person">
-	    <h1 className="edit-person-title">Edit Person</h1>
+	    <header className="edit-person-header">
+		  <h1>Edit Person</h1>
+		  <p>Update the name associated with this gift list.</p>
+		</header>
 		
 		<div className="edit-person-field">
-		  <label>Name</label>
+		  <label htmlFor="name">Name</label>
 		    <input
-			  className="edit-person-input"
+			  id="name"
 			  value={name}
 			  onChange={(e) => setName(e.target.value)}
 			  placeholder="Person name"
+			  autoFocus
 			/>
 		</div>
-			
-			<button className="edit-person-save" onClick={handleSave}>
-			  Save
-			</button>
+		
+		<div className="edit-person-actions">
+		  <button className="btn" onClick={handleSave}>
+		    Save
+		  </button>
+		  <button
+		    className="btn btn-ghost"
+			onClick={() => navigate("/dashboard")}
+		  >
+		    Cancel
+		  </button>
+		</div>
 	  </section>
 	);
 }

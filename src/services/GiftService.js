@@ -44,3 +44,19 @@ export async function updateGift(id, payload, token)
 	
 	return response.json();
 }
+
+//Delete a gift.
+export async function deleteGift(id, token)
+{
+	const response = await fetch(`${API}/api/gifts/${id}`, {
+		method: "DELETE",
+		headers: {
+			Authorization: `Bearer ${token}`,
+		},
+	});
+	
+	if ( ! response.ok)
+	{
+		throw new Error("Failed to delete the gift!");
+	}
+} 

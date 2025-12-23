@@ -1,8 +1,8 @@
 //Filename: src/pages/Register/Register.jsx
 
-import React, { useContext, useState } from "react";
+import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { registerUser } from "../../services/AuthService";
 import { AuthContext } from "../../context/AuthContext";
 import "../Auth/Auth.css";
@@ -11,13 +11,10 @@ const Register = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
     const navigate = useNavigate();
     const { setAccessToken, setUser } = useContext(AuthContext);
-	
 	const [errorMessage, setErrorMessage] = useState("");
-	const [successMessage, setSuccessMessage] = useState("");
 	
-	const onSubmit = async (data) => {
+	async function onSubmit(data) {
 		setErrorMessage("");
-		setSuccessMessage("");
 		
 		//Password Match Check.
 		if (data.password !== data.confirmPassword)
@@ -29,68 +26,77 @@ const Register = () => {
         try
         {
 			const response = await registerUser(data);
-			setSuccessMessage("Account created successfully!");
-			const { accessToken } = response;
 			
-			setAccessToken(accessToken);
+			setAccessToken(response.accessToken);
 			setUser({ username: response.username, email: response.email });
 			
 			navigate("/dashboard");
         }
-        catch (error)
+        catch
         {
-            setErrorMessage("Unable to create the account!");
+            setErrorMessage("Unable to create account. Please try again.");
         }
     };
 
     return (
       <div className="auth-container">
 	    <form className="auth-card" onSubmit={handleSubmit(onSubmit)}>
-		  <h1 className="auth-title">Create Account</h1>
+		  <header className="auth-header">
+		    <h1>Create Account</h1>
+			<p>Plan gifts simply and thoughtfully.</p>
+		  </header>
 		  
 		  {errorMessage && <p className="auth-error">{errorMessage}</p>}
-		  {successMessage && <p className="auth-success">{successMessage}</p>}
 		  
 		  {/* Username Field. */}
-		  <input
-		    className="auth-input"
-			type="text"
-			placeholder="Username"
-			{...register("username", { required: true })}
-		  />
-		  {errors.username && <p className="input-error">Username is required!</p>}
+		  <div className="auth-fields">
+		    <input
+		      className="auth-input"
+			  placeholder="Username"
+			  autoComplete="username"
+			  {...register("username", { required: true })}
+		    />
+		    {errors.username && <span className="input-error">Required</span>}
 		  
-		  {/* Email Field. */}
-		  <input
-		    className="auth-input"
-			type="email"
-			placeholder="Email"
-			{...register("email", { required: true })}
-		  />
-		  {errors.email && <p className="input-error">Email is required!</p>}
+		    {/* Email Field. */}
+		    <input
+		      className="auth-input"
+			  type="email"
+			  placeholder="Email"
+			  autoComplete="email"
+			  {...register("email", { required: true })}
+		    />
+			{errors.email && <span className="input-error">Required</span>}
 		  
-		  {/* Password Field. */}
-		  <input
-		    className="auth-input"
-			type="password"
-			placeholder="Password"
-			{...register("password", { required: true })}
-		  />
-		  {errors.password && <p className="input-error">Password is required!</p>}
+		    {/* Password Field. */}
+		    <input
+		      className="auth-input"
+			  type="password"
+			  placeholder="Password"
+			  autoComplete="new-password"
+			  {...register("password", { required: true })}
+		    />
+		    {errors.password && <span className="input-error">Required</span>}
 		  
-		  {/* Confirm Password Field. */}
-		  <input
-		    className="auth-input"
-			type="password"
-			placeholder="Confirm Password"
-			{...register("confirmPassword", { required: true })}
-		  />
-		  {errors.confirmPassword && <p className="input-error">Confirm your password!</p>}
+		    {/* Confirm Password Field. */}
+		    <input
+		      className="auth-input"
+			  type="password"
+			  placeholder="Confirm Password"
+			  autoComplete="new-password"
+			  {...register("confirmPassword", { required: true })}
+		    />
+		    {errors.confirmPassword && <span className="input-error">Required</span>}
+		  </div>
 		  
 		  {/* Submit Button. */}
 		  <button className="auth-button" type="submit">
-		    Sign up
+		    Create account
 		  </button>
+		  
+		  <p className="auth-footer">
+		    Already have an account? <Link to="/login">Sign in</Link>
+		  </p>
 		</form>
 	  </div>
 	);

@@ -1,18 +1,43 @@
 /* Filename: src/components/AddGift/AddGift.css */
 
 /* Form Wrapper Styles. */
-.add-gift-form {
+.add-gift {
 	display: flex;
-	gap: 0.5rem;
-	margin-bottom: 1rem;
+	align-items: center;
+	gap: var(--space-sm);
+	
 	width: 100%;
-	max-width: 420px;
+	max-width: 440px;
+	
+	padding: var(--space-sm) var(--space-md);
+	border-radius: var(--radius);
+	
+	background: var(--color-surface);
+	box-shadow: var(--shadow-sm);
+	
+	transition: box-shadow var(--transition-fast),
+	            transform var(--transition-fast);
 }
 
-.add-gift-form .input {
+.add-gift:focus-within {
+	box-shadow: var(--shadow-md);
+	transform: translateY(-1px);
+}
+
+.add-gift-input {
 	flex: 1;
+	border: none;
+	background: transparent;
+	outline: none;
+	
+	font-size: var(--font-base);
+	color: var(--color-text);
 }
 
-.add-gift-form .button {
-	flex-shrink: 0;
+.add-gift-input::placeholder { opacity: 0.55; }
+
+.add-gift-button {
+	padding: 0.45rem 0.9rem;
+	font-weight: 600;
+	white-space: nowrap;
 }
