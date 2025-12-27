@@ -41,30 +41,33 @@ const Header = () => {
 		    Gift Planner
 		  </Link>
 		
-		{/* Primary Navigation. */}
-		<nav className="nav">
-		  <Link to="/" className="nav-item">Home</Link>
-		  <Link to="/dashboard" className="nav-item">Dashboard</Link>
-		</nav>
+		  {/* Primary Navigation. */}
+		  <nav className="nav" aria-label="Primary navigation">
+		    <Link to="/" className="nav-item">Home</Link>
+		    <Link to="/dashboard" className="nav-item">Dashboard</Link>
+		  </nav>
 		
-		{/* Right Side: Auth / User Avatar. */}
-		<div className="header-actions">
+		  {/* Right Side: Auth / User Avatar. */}
+		  <div className="header-actions">
 		  {user ? (
 		    <div
 			  className="avatar-wrapper"
 			  ref={avatarRef}
+			  tabIndex={0}
+			  aria-haspopup="menu"
+			  aria-expanded={menuOpen}
 		      onClick={() => setMenuOpen((o) => ! o)}
 			>
-			  <div className="avatar">
+			  <div className="avatar" aria-hidden>
 			    {user.username?.charAt(0).toUpperCase() || "?"}
 			  </div>
 			  
-			  <div className={`menu ${menuOpen ? "open" : ""}`}>
+			  <div className={`menu ${menuOpen ? "open" : ""}`} role="menu">
 			    <Link to="/profile" className="menu-item">Profile</Link>
 				<Link to="/settings" className="menu-item">Settings</Link>
 				<div className="menu-divider" />
 				<button className="menu-item danger" onClick={handleLogout}>
-				  Logout
+				  Log out
 				</button>
 			  </div>
 			</div>

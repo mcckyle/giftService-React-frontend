@@ -12,6 +12,7 @@ import "./Dashboard.css";
 export default function Dashboard() {
 	const { accessToken } = useContext(AuthContext);
 	const [people, setPeople] = useState([]);
+	const isEmpty = people.length === 0;
 	
 	useEffect(() => {
 		async function load() {
@@ -43,22 +44,26 @@ export default function Dashboard() {
 		  <AddPerson onAdded={handleAdded} />
 		</header>
 		
-		{people.length === 0 ? (
-		  <div className="dashboard-empty">
+		{isEmpty ? (
+		  <section className="dashboard-empty">
+		    <div className="empty-icon" aria-hidden />
 		    <h2>Start your gift list</h2>
 		    <p>
-		      Add someone to begin collecting thoughtful gift ideas and memories.
+		      Add someone to begin collecting thoughtful gift ideas,
+			  memories, and moments worth celebrating.
 		    </p>
-		  </div>
+		  </section>
 		) : (
-		  <section className="people-list">
-		    {people.map(p => (
-		      <PersonCard
-			    key={p.id}
-			    person={p}
-			    onDelete={handleDeletePerson}
-			  />
-		    ))}
+		  <section className="people-section">
+		    <div className="people-list">
+		      {people.map(person => (
+		        <PersonCard
+			      key={person.id}
+			      person={person}
+			      onDelete={handleDeletePerson}
+			    />
+		      ))}
+			</div>
 		  </section>
 		)}
 	  </Layout>

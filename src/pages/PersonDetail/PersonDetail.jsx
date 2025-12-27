@@ -44,7 +44,7 @@ export default function PersonDetail() {
 		  <div className="person-detail-heading">
 		    <h1 className="person-detail-title">Gift Ideas</h1>
 			<p className="person-detail-subtitle">
-			  A focused space for capturing thoughtful, meaningful gift ideas.
+			  Capture meaningful ideas as they come to you - no pressure to perfect them.
 			</p>
 		  </div>
 		  
@@ -53,10 +53,10 @@ export default function PersonDetail() {
 		
 		{gifts.length === 0 ? (	
 		  <div className="person-detail-empty">
-		    <h2>No gift ideas yet</h2>
+		    <h2>Nothing here yet</h2>
 			<p>
-			  Start by adding a small idea - even rough thoughts can turn into
-			  something meaningful.
+			  Start small. A single thought, note, or reminder is often enough to spark
+			  the perfect gift later.
 			</p>
 		  </div>
 		) : (

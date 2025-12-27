@@ -6,17 +6,17 @@
 	gap: var(--space-sm);
 	
 	width: 100%;
-	max-width: 440px;
+	max-width: 420px;
 	
-	padding: 0.55rem 0.65rem;
+	padding: 0.55rem 0.6rem;
 	border-radius: var(--radius);
 	
 	background: var(--color-surface);
 	border: 1px solid rgba(0, 0, 0, 0.06);
 	box-shadow: var(--shadow-sm);
 	
-	transition: box-shadow var(--transition-fast),
-	            border-color var(--transition-fast),
+	transition: border-color var(--transition-fast),
+	            box-shadow var(--transition-fast),
 	            transform var(--transition-fast);
 }
 
@@ -41,11 +41,12 @@
 .add-person-input::placeholder { opacity: 0.55; }
 
 .add-person-button {
-	padding: 0.45rem 0.85rem;
+	padding: 0.45rem 0.75rem;
 	border-radius: calc(var(--radius) - 2px);
 	
-	font-size: 0.85rem;
+	font-size: 0.8rem;
 	font-weight: 600;
+	letter-spacing: 0.02em;
 	white-space: nowrap;
 	
 	background: var(--color-primary);
@@ -53,7 +54,8 @@
 	
 	transition: background var(--transition-fast),
 	            transform var(--transition-fast),
-				box-shadow var(--transition-fast);
+				box-shadow var(--transition-fast),
+				opacity var(--transition-fast);
 }
 
 .add-person-button:hover {
@@ -62,7 +64,13 @@
 	box-shadow: var(--shadow-sm);
 }
 
-.add-person-button:active {
+.add-person-button:active:not(:disabled) {
 	transform: translateY(0);
+	box-shadow: none;
+}
+
+.add-person-button:disabled {
+	opacity: 0.5;
+	cursor: not-allowed;
 	box-shadow: none;
 }

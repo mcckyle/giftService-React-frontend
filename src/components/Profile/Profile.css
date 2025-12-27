@@ -3,27 +3,35 @@
 /* Profile Container Styles. */
 .profile-card {
 	max-width: 620px;
-	margin: 2rem auto;
-	padding: 2.5rem;
-	border-radius: 18px;
+	margin: 2.5rem auto;
+	padding: 2.5rem 2rem;
+	border-radius: 20px;
 	background: var(--color-surface);
 	box-shadow: var(--shadow-md);
 	display: flex;
 	flex-direction: column;
 	gap: 2rem;
+	
+	transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+.profile-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-lg); }
+
+.profile-header
+{
+	text-align: center;
+	display: flex;
+	flex-direction: column;
+	gap: 0.25rem;
 }
 
-.profile-header { text-align: center; }
-
 .profile-header h1 {
-	font-size: 2rem;
+	font-size: clamp(1.8rem, 4vw, 2rem);
 	font-weight: 600;
 	margin: 0;
 }
 
 .profile-header p {
-	margin-top: 0.35rem;
-	font-size: 0.95rem;
+	font-size: var(--font-body);
 	opacity: 0.65;
 }
 
@@ -33,20 +41,20 @@
 	flex-direction: column;
 	gap: 1.5rem;
 }
+.profile-info div { display: flex; flex-direction: column; }
 
 .profile-info span {
-	display: block;
 	font-size: 0.8rem;
 	text-transform: uppercase;
 	opacity: 0.6;
-	margin-bottom: 0.15rem;
 	letter-spacing: 0.03em;
+	margin-bottom: 0.15rem;
 }
 
 .profile-info p {
-	margin: 0;
 	font-size: 1rem;
 	line-height: 1.5;
+	margin: 0;
 }
 
 .profile-actions {
@@ -54,7 +62,22 @@
 	gap: 1rem;
 	justify-content: center;
 }
-.button.danger { background: #e25555; color: #fff; }
+
+.button {
+	padding: 0.65rem 1.25rem;
+	font-size: var(--font-base);
+	font-weight: 600;
+	border-radius: var(--radius);
+	border: none;
+	cursor: pointer;
+	background: var(--color-primary);
+	color: #fff;
+	
+	transition: transform var(--transition-fast),
+	            box-shadow var(--transition-fast);
+}
+.button:hover { transform: translateY(-1px); box-shadow: var(--shadow-sm); }
+.button.danger { background: #e25555; }
 
 .profile-error {
 	margin-top: 1rem;
@@ -79,13 +102,13 @@
 .modal-card {
 	background: var(--color-surface);
 	width: 100%;
-	max-width: 440px;
+	max-width: 460px;
 	padding: 2rem;
-	border-radius: 20px;
+	border-radius: 22px;
 	display: flex;
 	flex-direction: column;
-	gap: 1rem;
-	box-shadow: 0 12px 36px rgba(0, 0, 0, 0.18);
+	gap: 1.25rem;
+	box-shadow: var(--shadow-lg);
 	
 	animation: fadeScale 0.25s ease;
 }
@@ -100,11 +123,11 @@
 .input {
 	width: 100%;
 	padding: 0.75rem 1rem;
-	border-radius: 12px;
+	border-radius: 14px;
 	border: 1px solid rgba(0, 0, 0, 0.15);
 	font-size: 1rem;
 	
-	transition: border-color 0.2s ease, box-shadow 0.2s ease;
+	transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
 }
 
 .input:focus {

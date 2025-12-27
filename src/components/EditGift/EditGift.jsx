@@ -8,6 +8,7 @@ import "./EditGift.css";
 export default function EditGift({ gift, onClose, onUpdated, onDeleted }) {
 	const { accessToken } = useContext(AuthContext);
 	const [deleting, setDeleting] = useState(false);
+	const [saving, setSaving] = useState(false);
 	
 	const [title, setTitle] = useState(gift.title);
 	const [notes, setNotes] = useState(gift.notes || "");
@@ -16,6 +17,12 @@ export default function EditGift({ gift, onClose, onUpdated, onDeleted }) {
 	const [purchased, setPurchased] = useState(gift.purchased);
 	
 	async function save() {
+		if (saving)
+		{
+			return;
+		}
+		
+		setSaving(true);
 		const payload = {
 			title,
 			notes,
@@ -119,7 +126,7 @@ export default function EditGift({ gift, onClose, onUpdated, onDeleted }) {
 		  </label>
 		  
 		  <div className="edit-gift-actions">
-		    <button className="button" onClick={save}>
+		    <button className="button" onClick={save} disabled={saving}>
 			  Save
 			</button>
 			

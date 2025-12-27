@@ -5,8 +5,9 @@
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	gap: 2.5rem;
+	gap: clamp(2rem, 4vw, 3rem);
 	text-align: center;
+	padding: clamp(1rem, 3vw, 2rem);
 }
 
 .ie-header {
@@ -16,20 +17,21 @@
 }
 
 .ie-title {
-	font-size: 1.9rem;
+	font-size: clamp(1.8rem, 4vw, 2rem);
 	font-weight: 600;
 	margin: 0;
 }
 
 .ie-subtitle {
-	font-size: 0.95rem;
-	opacity: 0.7;
+	font-size: var(--font-body);
+	opacity: 0.75;
+	max-width: 480px;
 }
 
 .ie-card {
 	width: 100%;
-	max-width: 440px;
-	padding: 2rem;
+	max-width: 460px;
+	padding: clamp(1.5rem, 3vw, 2rem);
 	
 	background: var(--color-surface);
 	border-radius: var(--radius);
@@ -50,25 +52,31 @@
 
 .ie-card h3 {
 	margin: 0;
-	font-size: 1.2rem;
+	font-size: 1.25rem;
 	font-weight: 600;
 }
 
 .ie-card p {
 	margin: 0;
-	font-size: 0.95rem;
+	font-size: var(--font-base);
 	opacity: 0.75;
 }
 
 .button {
-	padding: 0.65rem 1.2rem;
+	padding: 0.65rem 1.25rem;
 	border-radius: var(--radius);
-	font-size: 0.95rem;
+	font-size: var(--font-base);
+	font-weight: 600;
 	cursor: pointer;
+	background: var(--color-primary);
+	color: #fff;
+	border: none;
 	
-	transition: background var(--transition-fast), transform var(--transition-fast);
+	transition: transform var(--transition-fast),
+	            box-shadow var(--transition-fast),
+				background var(--transition-fast);
 }
-.button:hover { transform: translateY(-1px); }
+.button:hover { transform: translateY(-1px); box-shadow: var(--shadow-sm); background: var(--color-primary-dark); }
 
 /* File Picker Button Styles. */
 .file-picker {
@@ -76,27 +84,28 @@
 	justify-content: center;
 	align-items: center;
 	
-	padding: 0.7rem 1.2rem;
-	font-size: 0.9rem;
-	border: 1px dashed #ccc;
+	padding: 0.75rem 1.2rem;
+	font-size: 0.95rem;
+	border: 1px dashed rgba(0, 0, 0, 0.15);
 	border-radius: var(--radius);
 	cursor: pointer;
-	background: #fff;
-	color: #000;
+	background: var(--color-surface);
+	color: var(--color-text);
 	
-	transition: border-color 0.2s ease, background 0.2s ease;
+	transition: border-color var(--transition-fast), background var(--transition-fast);
 }
 
 .file-picker:hover {
-	border-color: #999;
-	background: #f9f9f9;
+	border-color: var(--color-primary);
+	background: rgba(75, 123, 253, 0.05);
+	box-shadow: var(--shadow-sm);
 }
 .file-picker input { display: none; }
 
 /* Status Message Styles. */
 .ie-status {
 	margin-top: 1rem;
-	font-size: 0.95rem;
+	font-size: var(--font-base);
 	opacity: 0.75;
 	text-align: center;
 }

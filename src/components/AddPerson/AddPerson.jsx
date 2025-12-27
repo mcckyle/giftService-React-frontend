@@ -11,6 +11,7 @@ export default function AddPerson({ onAdded }) {
 	async function submit(e)
 	{
 		e.preventDefault();
+		const trimmed = name.trim();
 		if ( ! name.trim())
 		{
 			return;
@@ -22,17 +23,26 @@ export default function AddPerson({ onAdded }) {
 	}
 	
 	return (
-	  <form className="add-person" onSubmit={submit}>
+	  <form className="add-person"
+	  onSubmit={submit}
+	  aria-label="Add person form"
+	  >
 	    <input
 		  className="add-person-input"
+		  type="text"
 		  placeholder="Add someone..."
 		  value={name}
 		  onChange={(e) => setName(e.target.value)}
-		  aria-label="Add person"
+		  aria-label="Person name"
+		  autoComplete="off"
 		/>
 		
-		<button className="add-person-button" type="submit">
-		  Add Person
+		<button
+		  className="add-person-button"
+		  type="submit"
+		  disabled={!name.trim()}
+		>
+		  Add
 		</button>
 	  </form>
 	);

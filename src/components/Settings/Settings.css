@@ -1,39 +1,50 @@
 /* Filename: src/components/Settings/Settings.css */
 
-/* Page Layout Styles. */
+/* Page Container Styles. */
 .settings-page {
 	max-width: 760px;
-	margin: 0 auto;
-	padding: 48px 24px;
+	margin: 2.5rem auto;
+	padding: 3rem 1.5rem;
+	
+	display: flex;
+	flex-direction: column;
+	gap: 2.5rem;
 	
 	animation: fadeIn 0.32s ease-out;
 }
 
-/* Title Styles. */
+/* Settings Page Title Styles. */
 .settings-title {
 	text-align: center;
-	font-size: 2rem;
+	font-size: clamp(1.8rem, 4vw, 2rem);
 	font-weight: 700;
-	margin-bottom: 40px;
+	margin-bottom: 2rem;
 }
 
 /* Section Styles. */
-.settings-section { margin-bottom: 48px; }
+.settings-section
+{
+	display: flex;
+	flex-direction: column;
+	gap: 1.5rem;
+}
 
 .settings-section-title {
 	font-size: 1.25rem;
 	font-weight: 600;
-	margin-bottom: 20px;
+	margin-bottom: 1rem;
 }
 
-/* Settings Cards Styles. */
+/* Settings Cards Layout Styles. */
 .settings-card {
 	background: var(--color-surface);
-	padding: 28px;
+	padding: 2rem 1.75rem;
 	border-radius: 20px;
 	border: 1px solid rgba(0, 0, 0, 0.06);
 	box-shadow: var(--shadow-sm);
-	margin-bottom: 20px;
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
 	
 	transition: transform var(--transition-fast), box-shadow var(--transition-fast);
 }
@@ -43,15 +54,20 @@
 }
 
 .settings-card:hover {
-	transform: translateY(-3px);
+	transform: translateY(-2px);
 	box-shadow: var(--shadow-lg);
 }
 
 /* Card Header Styles. */
-.settings-card-header { margin-bottom: 18px; }
+.settings-card-header
+{
+	display: flex;
+	flex-direction: column;
+	gap: 0.25rem;
+}
 
 .settings-card-title {
-	font-size: 1.1rem;
+	font-size: 1.15rem;
 	font-weight: 600;
 }
 
@@ -60,30 +76,33 @@
 	opacity: 0.7;
 }
 
-/* Options Group Styles */
+/* Options Groups Styles */
 .settings-options {
 	display: flex;
 	flex-direction: column;
-	gap: 12px;
+	gap: 0.75rem;
 }
 
 .settings-option {
 	display: flex;
 	align-items: center;
-	gap: 12px;
+	gap: 0.75rem;
+	font-weight: 500;
 	cursor: pointer;
+	user-select: none;
+	font-size: 0.95rem;
 }
+.settings-option input { cursor: pointer; }
 
 /* Account Buttons Styles. */
 .settings-actions {
 	display: flex;
 	flex-direction: column;
-	gap: 12px;
-	padding-top: 8px;
+	gap: 0.75rem;
 }
 
 .settings-action-btn {
-	padding: 12px 18px;
+	padding: 0.65rem 1.2rem;
 	border-radius: var(--radius);
 	border: none;
 	font-size: 1rem;
@@ -92,12 +111,15 @@
 	color: #fff;
 	cursor: pointer;
 	
-	transition: var(--transition-fast);
+	transition: transform var(--transition-fast),
+	            box-shadow var(--transition-fast),
+				opacity var(--transition-fast);
 }
 
 .settings-action-btn:hover {
-	transform: translateY(-2px);
-	opacity: 0.9;
+	transform: translateY(-1px);
+	box-shadow: var(--shadow-sm);
+	opacity: 0.95;
 }
 
 /* Danger Button Styles. */
@@ -106,12 +128,22 @@
 /* Modal Input Styles. */
 .modal-input {
 	width: 100%;
-	margin-top: 8px;
-	padding: 10px 12px;
+	margin-top: 0.5rem;
+	padding: 0.65rem 1rem;
 	border-radius: var(--radius);
-	border: 1px solid rgba(0, 0, 0, 0.25);
+	border: 1px solid rgba(0, 0, 0, 0.2);
 	background: var(--color-surface);
 	color: var(--color-text);
+	font-size: 0.95rem;
+	
+	transition: border-color var(--transition-fast),
+	            box-shadow var(--transition-fast);
+}
+
+.modal-input:focus {
+	outline: none;
+	border-color: var(--color-primary);
+	box-shadow: 0 0 0 3px rgba(75, 123, 253, 0.12);
 }
 
 :root[data-theme="dark"] .modal-input {
@@ -128,6 +160,6 @@
 /* Media Query Styles. */
 @media (max-width: 600px)
 {
-	.settings-page { padding: 32px 18px; }
-	.settings-title { font-size: 1.8rem; }
+	.settings-page { padding: 2rem 1rem; }
+	.settings-title { font-size: 1.75rem; }
 }

@@ -5,51 +5,54 @@ import "./HomePage.css";
 
 const HomePage = () => {
 	return (
-	  <div className="home">
+	  <main className="home">
 	    {/* Hero Section. */}
 	    <section className="home-hero">
 		  <span className="home-eyebrow">Thoughtful Gifting</span>
 		  
 		    <h1 className="home-title">
-			  Plan Gifts with Ease
+			  Plan Gifts with Intention
 			</h1>
 			
 			<p className="home-subtitle">
-		      Organize ideas, track recipients, and create meaningful gifts
-			  without the stress.
+		      A simple, modern space to organize gift ideas, track recipients,
+			  and give more meaningfully - without the stress.
 		    </p>
 			
 			<div className="home-actions">
 		      <Link to="/dashboard" className="home-btn">
-			    Open Dashboard
+			    Go to Dashboard
 			  </Link>
 		    </div>
 		</section>
 		
-		{/* Feature Cards. */}
+		{/* Feature Cards Grid. */}
 		<section className="home-grid">
 		  <article className="home-card">
 		    <h2 className="card-title">Stay Organized</h2>
 			<p className="card-text">
-			  Track occasions, gift ideas, and progress neatly in one place.
+			  Keep gift ideas, occasions and progress neatly organized
+			  in one place.
 			</p>
 		  </article>
 		  
 		  <article className="home-card">
 		    <h2 className="card-title">Capture Ideas Instantly</h2>
 			<p className="card-text">
-			  Save inspiration the moment it strikes so nothing meaningful is lost.
+			  Save inspiration the moment it strikes so nothing thoughtful
+			  slips away.
 			</p>
 		  </article>
 		  
 		  <article className="home-card">
-		    <h2 className="card-title">Give with Intention</h2>
+		    <h2 className="card-title">Give with Purpose</h2>
 			<p className="card-text">
-			  Build thoughtful gift histories that make every gift feel personal.
+			  Build meaningful gift histories that make every gesture
+			  feel personal.
 			</p>
 		  </article>
 		</section>
-	  </div>
+	  </main>
 	);
 };
 

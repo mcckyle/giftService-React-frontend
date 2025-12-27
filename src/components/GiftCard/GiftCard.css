@@ -1,29 +1,29 @@
 /* Filename: src/components/GiftCard/GiftCard.css */
 
 .gift-card {
-	background: var(--color-surface);
-	padding: var(--space-lg);
-	border-radius: var(--radius);
-	box-shadow: var(--shadow-sm);
-	cursor: pointer;
-	
 	display: flex;
 	flex-direction: column;
 	gap: var(--space-sm);
+	
+	padding: var(--space-lg);
+	border-radius: var(--radius);
+	background: var(--color-surface);
+	box-shadow: var(--shadow-sm);
+	cursor: pointer;
 	
 	transition: transform var(--transition-fast),
 	            box-shadow var(--transition-fast);
 }
 
 .gift-card:hover {
-	transform: translateY(-3px);
+	transform: translateY(-2px);
 	box-shadow: var(--shadow-md);
 }
-.gift-card.purchased { opacity: 0.85; }
+.gift-card.purchased { background: linear-gradient(to bottom, var(--color-surface), rgba(0, 0, 0, 0.02)); }
 
 .gift-card.purchased .gift-title {
 	text-decoration: line-through;
-	opacity: 0.75;
+	opacity: 0.65;
 }
 
 .gift-card-header {
@@ -41,34 +41,37 @@
 }
 
 .gift-edit-btn {
-	background: transparent;
+	background: none;
 	border: none;
 	padding: 0.25rem 0.5rem;
 	
-	font-size: 0.85rem;
+	font-size: 0.8rem;
 	font-weight: 500;
 	color: var(--color-text);
-	opacity: 0.6;
+	opacity: 0.5;
 	cursor: pointer;
 	
-	transition: opacity var(--transition-fast);
+	transition: opacity var(--transition-fast), color var(--transition-fast);
 }
-.gift-card:hover gift-edit-btn { opacity: 0.9; }
+.gift-card:hover .gift-edit-btn { opacity: 0.8; }
 
 .gift-edit-btn:hover {
+	background: none;
+	color: var(--color-primary);	
 	opacity: 1;
-	color: var(--color-primary);
 }
 
 .gift-price {
-	font-size: 0.95rem;
+	font-size: 0.9rem;
 	font-weight: 500;
-	opacity: 0.75;
+	opacity: 0.7;
 }
 
 .gift-link {
 	align-self: flex-start;
-	font-size: 0.9rem;
+	margin-top: var(--space-xs);
+	
+	font-size: 0.85rem;
 	font-weight: 500;
 	color: var(--color-primary);
 	text-decoration: none;

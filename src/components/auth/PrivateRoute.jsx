@@ -1,6 +1,4 @@
 //Filename: src/components/auth/PrivateRoute.jsx
-
-import React from "react";
 import { Navigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 
@@ -12,8 +10,8 @@ const PrivateRoute = ({ element }) => {
 	{
 		return (
 		  <div className="loading-screen">
-		    <div className="loading-spinner"></div>
-		      <p>Checking session...</p>
+		    <div className="loading-spinner" />
+			<p>Checking session...</p>
 		  </div>
 		);
 	}

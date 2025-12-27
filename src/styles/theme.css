@@ -1,6 +1,7 @@
 /* Filename: src/styles/theme.css */
 
 :root {
+  color-scheme: light dark;
   --color-bg: #f5f7f8;
   --color-surface: #ffffff;
   --color-text: #1b1b1b;

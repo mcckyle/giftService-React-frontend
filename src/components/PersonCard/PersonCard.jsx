@@ -7,12 +7,12 @@ export default function PersonCard({ person, onDelete }) {
 	return (
 	  <article className="person-card">
 	    <header className="person-card-header">
-		  <span className="person-eyebrow">Recipient</span>
+		  <span className="person-eyebrow">Gift Recipient</span>
 		  <h3 className="person-name">{person.name}</h3>
 		</header>
 		
 		<footer className="person-actions">
-		  <Link to={`/person/${person.id}`} className="person-link">
+		  <Link to={`/person/${person.id}`} className="person-link primary">
 		    View Gifts
 		  </Link>
 		  
