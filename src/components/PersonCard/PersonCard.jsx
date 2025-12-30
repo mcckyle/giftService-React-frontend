@@ -7,7 +7,7 @@ export default function PersonCard({ person, onDelete }) {
 	return (
 	  <article className="person-card">
 	    <header className="person-card-header">
-		  <span className="person-eyebrow">Gift Recipient</span>
+		  <span className="person-eyebrow">Recipient</span>
 		  <h3 className="person-name">{person.name}</h3>
 		</header>
 		
@@ -21,6 +21,7 @@ export default function PersonCard({ person, onDelete }) {
 		  </Link>
 		  
 		  <button
+		    type="button"
 		    className="person-link danger"
 			onClick={() => onDelete(person.id)}
 		  >

@@ -7,7 +7,7 @@ import "./GiftCard.css";
 export default function GiftCard({ gift, onUpdated, onDeleted }) {
 	const [open, setOpen] = useState(false);
 	
-	function handleOpen(e) {
+	function openEditor(e) {
 		e.stopPropagation();
 		setOpen(true);
 	}
@@ -15,15 +15,18 @@ export default function GiftCard({ gift, onUpdated, onDeleted }) {
 	return (
 	  <>
 	    <article
-		  className={`gift-card ${gift.purchased ? "purchased" : ""}`}
+		  className={`gift-card ${gift.purchased ? "is-purchased" : ""}`}
 		  onClick={() => setOpen(true)}
+		  role="button"
+		  tabIndex={0}
 		>
 		  <header className="gift-card-header">
 	        <h3 className="gift-title">{gift.title}</h3>
 		  
 		    <button
+			  type="button"
 		      className="gift-edit-btn"
-			  onClick={handleOpen}
+			  onClick={openEditor}
 			  aria-label="Edit gift"
 		    >
 		      Edit

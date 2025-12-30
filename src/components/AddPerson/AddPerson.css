@@ -8,8 +8,8 @@
 	width: 100%;
 	max-width: 420px;
 	
-	padding: 0.55rem 0.6rem;
-	border-radius: var(--radius);
+	padding: 0.6rem 0.7rem;
+	border-radius: calc(var(--radius) - 4px);
 	
 	background: var(--color-surface);
 	border: 1px solid rgba(0, 0, 0, 0.06);
@@ -18,6 +18,10 @@
 	transition: border-color var(--transition-fast),
 	            box-shadow var(--transition-fast),
 	            transform var(--transition-fast);
+}
+
+:root[data-theme="dark"] .add-person {
+	border-color: rgba(255, 255, 255, 0.08);
 }
 
 .add-person:focus-within {
@@ -32,21 +36,21 @@
 	background: transparent;
 	outline: none;
 	
-	padding: 0.4rem 0.35rem;
+	padding: 0.45rem 0.4rem;
 	
 	font-size: var(--font-base);
 	color: var(--color-text);
 }
 
-.add-person-input::placeholder { opacity: 0.55; }
+.add-person-input::placeholder { opacity: 0.5; }
 
 .add-person-button {
-	padding: 0.45rem 0.75rem;
-	border-radius: calc(var(--radius) - 2px);
+	padding: 0.45rem 0.85rem;
+	border-radius: 999px;
 	
 	font-size: 0.8rem;
 	font-weight: 600;
-	letter-spacing: 0.02em;
+	letter-spacing: 0.03em;
 	white-space: nowrap;
 	
 	background: var(--color-primary);
@@ -70,7 +74,7 @@
 }
 
 .add-person-button:disabled {
-	opacity: 0.5;
+	opacity: 0.45;
 	cursor: not-allowed;
 	box-shadow: none;
 }

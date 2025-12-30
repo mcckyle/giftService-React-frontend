@@ -1,5 +1,6 @@
 /* Filename: src/pages/Dashboard/Dashboard.css */
 
+/* Dashboard Header Styles. */
 .dashboard-header {
 	display: flex;
 	justify-content: space-between;
@@ -17,52 +18,58 @@
 }
 
 .dashboard-title {
-	font-size: var(--font-title);
+	font-size: clamp(1.8rem, 3vw, 2.2rem);
 	font-weight: 700;
-	line-height: 1.15;
 	letter-spacing: -0.015em;
+	line-height: 1.15;
 }
 
 .dashboard-subtitle {
-	font-size: var(--font-body);
+	font-size: 1rem;
 	line-height: 1.6;
-	color: var(--color-text-muted);
+	opacity: 0.75;
+	max-width: 520px;
 }
 
 /* Empty State Styles. */
 .dashboard-empty {
 	margin-top: clamp(4rem, 14vh, 7rem);
-	text-align: center;
-	max-width: 460px;
+	max-width: 480px;
 	margin-inline: auto;
+	text-align: center;
 	
-	animation: fadeIn 0.5s ease forwards;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: var(--space-sm);
+	
+	animation: fadeIn 0.45s ease forwards;
 }
 
 .dashboard-empty h2 {
-	font-size: var(--font-card-title);
+	font-size: 1.25rem;
 	font-weight: 600;
-	margin-bottom: var(--space-sm);
+	margin-top: var(--space-sm);
 }
-.dashboard-empty p { opacity: 0.75; line-height: 1.6; }
+.dashboard-empty p { font-size: 0.95rem; line-height: 1.6; opacity: 0.75; }
 
 .empty-icon {
 	width: 56px;
 	height: 56px;
-	margin: 0 auto var(--space-md);
 	border-radius: 50%;
 	background: radial-gradient(
-	              rgba(255, 255, 255, 0.35),
-				  rgba(255, 255, 255, 0.05));
-	border: 1px solid #fff;
+                  circle at top,
+	              rgba(255, 255, 255, 0.4),
+				  rgba(255, 255, 255, 0.08));
+	border: 1px solid rgba(255, 255, 255, 0.35);
 }
 
 /* People Grid Styles. */
-.people-section { animation: fadeIn 0.4s ease forwards; }
+.people-section { animation: fadeIn 0.35s ease forwards; }
 .people-list {
 	display: grid;
-	gap: var(--space-lg);
 	grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+	gap: var(--space-lg);
 }
 
 /* Animations Styles. */

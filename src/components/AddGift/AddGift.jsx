@@ -11,27 +11,30 @@ export default function AddGift({ personId, onAdded }) {
 	async function submit(e)
 	{
 		e.preventDefault();
-		if ( ! title.trim())
+		const trimmed = title.trim();
+		if ( ! trimmed)
 		{
 			return;
 		}
 		
-		const newGift = await createGift(personId, { title }, accessToken);
+		const newGift = await createGift(personId, { title: trimmed }, accessToken);
 		setTitle("");
 		onAdded(newGift);
 	}
 	
 	return (
-	  <form className="add-gift" onSubmit={submit}>
+	  <form className="add-gift" onSubmit={submit} aria-label="Add gift idea form">
 	    <input
 		  className="add-gift-input"
+		  type="text"
 		  placeholder="Add a gift idea..."
 		  value={title}
 		  onChange={(e) => setTitle(e.target.value)}
 		  aria-label="Add gift idea"
+		  autoComplete="off"
 		/>
 		
-		<button className="add-gift-button" type="submit">
+		<button className="add-gift-button" type="submit" disabled={ ! title.trim()}>
 		  Add
 		</button>
 	  </form>

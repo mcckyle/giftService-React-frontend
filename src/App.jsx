@@ -41,7 +41,10 @@ export default function App() {
 		  <Route path="/person/:id/edit" element={<EditPerson />} />
 
           {/* Fallback Route. */}
-		  <Route path="*" element={<h2 className="not-found">Page not found</h2>} /> {/* Handle Undefined Routes. */}
+		  <Route
+		    path="*"
+			element={<h2 className="not-found">Page not found</h2>}
+		  /> {/* Handle Undefined Routes. */}
 		</Routes>
 	  </PageContainer>
   </Router>

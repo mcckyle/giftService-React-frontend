@@ -15,11 +15,11 @@ export default function Dashboard() {
 	const isEmpty = people.length === 0;
 	
 	useEffect(() => {
-		async function load() {
+		async function loadPeople() {
 			const data = await getPeople(accessToken);
 			setPeople(data || []);
 		}
-		load();
+		loadPeople();
 	}, [accessToken]);
 	
 	function handleAdded(person) {
@@ -37,7 +37,7 @@ export default function Dashboard() {
 		  <div className="dashboard-heading">
 		    <h1 className="dashboard-title">Your People</h1>
 			<p className="dashboard-subtitle">
-			  A simple place to organize everyone that you enjoy gifting to.
+			  A focused space for the people you care about most.
 			</p>
 		  </div>
 		  
@@ -47,10 +47,10 @@ export default function Dashboard() {
 		{isEmpty ? (
 		  <section className="dashboard-empty">
 		    <div className="empty-icon" aria-hidden />
-		    <h2>Start your gift list</h2>
+		    <h2>No one here yet</h2>
 		    <p>
-		      Add someone to begin collecting thoughtful gift ideas,
-			  memories, and moments worth celebrating.
+		      Add someone to start collecting gift ideas, meaningful notes,
+			  and moments worth remembering.
 		    </p>
 		  </section>
 		) : (

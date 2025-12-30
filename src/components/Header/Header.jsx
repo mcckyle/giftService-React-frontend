@@ -23,7 +23,7 @@ const Header = () => {
 		  {
 			  setMenuOpen(false);
 		  }
-	  };
+	  }
 	  
 	  if (menuOpen)
 	  {
@@ -57,14 +57,19 @@ const Header = () => {
 			  aria-haspopup="menu"
 			  aria-expanded={menuOpen}
 		      onClick={() => setMenuOpen((o) => ! o)}
+			  onKeyDown={(e) => e.key === "Escape" && setMenuOpen(false)}
 			>
 			  <div className="avatar" aria-hidden>
 			    {user.username?.charAt(0).toUpperCase() || "?"}
 			  </div>
 			  
 			  <div className={`menu ${menuOpen ? "open" : ""}`} role="menu">
-			    <Link to="/profile" className="menu-item">Profile</Link>
-				<Link to="/settings" className="menu-item">Settings</Link>
+			    <Link to="/profile" className="menu-item" onClick={() => setMenuOpen(false)}>
+				  Profile
+				</Link>
+				<Link to="/settings" className="menu-item" onClick={() => setMenuOpen(false)}>
+				  Settings
+				</Link>
 				<div className="menu-divider" />
 				<button className="menu-item danger" onClick={handleLogout}>
 				  Log out

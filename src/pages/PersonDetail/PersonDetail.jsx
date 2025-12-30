@@ -42,9 +42,10 @@ export default function PersonDetail() {
 	  <Layout>
 	    <header className="person-detail-header">
 		  <div className="person-detail-heading">
-		    <h1 className="person-detail-title">Gift Ideas</h1>
+		    <h1 className="person-detail-title">Gift ideas</h1>
 			<p className="person-detail-subtitle">
-			  Capture meaningful ideas as they come to you - no pressure to perfect them.
+			  Save small thoughts as they appear. Even the simplest idea can grow
+			  into something meaningful later.
 			</p>
 		  </div>
 		  
@@ -53,7 +54,7 @@ export default function PersonDetail() {
 		
 		{gifts.length === 0 ? (	
 		  <div className="person-detail-empty">
-		    <h2>Nothing here yet</h2>
+		    <h2>No ideas yet</h2>
 			<p>
 			  Start small. A single thought, note, or reminder is often enough to spark
 			  the perfect gift later.

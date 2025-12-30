@@ -56,7 +56,7 @@ export default function EditGift({ gift, onClose, onUpdated, onDeleted }) {
 		}
 		catch (error)
 		{
-			console.error(error);
+			//console.error(error);
 			alert("Failed to delete gift.");
 		}
 		finally
@@ -109,11 +109,8 @@ export default function EditGift({ gift, onClose, onUpdated, onDeleted }) {
 		  </div>
 		  
 		  <div className="edit-gift-field">
-		    <label>URL</label>
-			  <input
-			    value={url}
-			    onChange={(e) => setUrl(e.target.value)}
-			  />
+		    <label>Link</label>
+			  <input value={url} onChange={(e) => setUrl(e.target.value)} />
 		  </div>
 		  
 		  <label className="edit-gift-toggle">
@@ -127,19 +124,20 @@ export default function EditGift({ gift, onClose, onUpdated, onDeleted }) {
 		  
 		  <div className="edit-gift-actions">
 		    <button className="button" onClick={save} disabled={saving}>
-			  Save
+			  Save changes
+			</button>
+			
+			<button className="button ghost" onClick={onClose} type="button">
+			  Cancel
 			</button>
 			
 			<button
 			  className="gift-delete-btn"
 			  onClick={handleDelete}
 			  disabled={deleting}
+			  type="button"
 			>
 			  Delete
-			</button>
-			
-			<button className="button ghost" onClick={onClose}>
-			  Cancel
 			</button>
 		  </div>
 		</div>

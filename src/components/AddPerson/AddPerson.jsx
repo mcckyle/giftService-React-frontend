@@ -12,25 +12,26 @@ export default function AddPerson({ onAdded }) {
 	{
 		e.preventDefault();
 		const trimmed = name.trim();
-		if ( ! name.trim())
+		if ( ! trimmed)
 		{
 			return;
 		}
 		
-		const newPerson = await createPerson({ name }, accessToken);
+		const newPerson = await createPerson({ name: trimmed }, accessToken);
 		setName("");
 		onAdded(newPerson);
 	}
 	
 	return (
-	  <form className="add-person"
-	  onSubmit={submit}
-	  aria-label="Add person form"
+	  <form
+	    className="add-person"
+	    onSubmit={submit}
+	    aria-label="Add person form"
 	  >
 	    <input
 		  className="add-person-input"
 		  type="text"
-		  placeholder="Add someone..."
+		  placeholder="Add a person..."
 		  value={name}
 		  onChange={(e) => setName(e.target.value)}
 		  aria-label="Person name"
